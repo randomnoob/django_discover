@@ -26,7 +26,8 @@ SECRET_KEY = '^rz9wrbb#ig!tl)4c$!o_^01ef8(rtxe(i()$ph61$8+mh^v_8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['localhost', '123.21.22.23']
 
 
 # Application definition
@@ -80,24 +81,24 @@ WSGI_APPLICATION = 'PyEditorial.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# If you need to use Postgresql, you can use this section
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'PyEditorial',
-#         'USER': 'postgres',
-#         'PASSWORD': 'great123',
-#         'HOST': 'localhost',
-#         'PORT': '',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+# If you need to use Postgresql, you can use this section
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_discover',
+        'USER': 'nl',
+        'PASSWORD': 'mangto535',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 
 
 # Password validation
