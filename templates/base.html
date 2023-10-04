@@ -94,70 +94,13 @@
                             {% endfor %}
                         </ul>
                     </li>
-                    <li><a href="{% url 'content:videocast' %}">{% translate 'Videocast' %}</a></li>
-                    <li>
-                        <span class="opener">{% translate 'Videocast Categories' %}</span>
-                        <ul>
-                            {% for videocast_category in videocast_categories %}
-                                <li><a href="{% url 'content:videocast_archive_by_category_pk' videocast_category.pk %}">{{ videocast_category.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    <li><a href="{% url 'content:podcast' %}">{% translate 'Podcast' %}</a></li>
-                    <li>
-                        <span class="opener">{% translate 'Podcast Categories' %}</span>
-                        <ul>
-                            {% for podcast_category in podcast_categories %}
-                                <li><a href="{% url 'content:podcast_archive_by_category_pk' podcast_category.pk %}">{{ podcast_category.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    {% if user.is_anonymous %}
-                    <li><a href="{% url 'login' %}">{% translate 'Login' %}</a></li>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">{% translate 'Logout' %}</a></li>
 
-                    <li>
-                        <span class="opener">{% translate 'Create New Objects' %}</span>
-                        <ul>
-                            <li><a href="{% url 'content:blog_create' %}">{% translate 'New Blog' %}</a></li>
-                            <li><a href="{% url 'content:videocast_create' %}">{% translate 'New Videocast' %}</a></li>
-                            <li><a href="{% url 'content:podcast_create' %}">{% translate 'New Podcast' %}</a></li>
-                            <li><a href="{% url 'content:skill_create' %}">{% translate 'New Skill' %}</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="opener">{% translate 'Create Category Object' %}</span>
-                        <ul>
-                            <li><a href="{% url 'content:blog_category_create' %}">{% translate 'New Blog Category' %}</a></li>
-                            <li><a href="{% url 'content:videocast_category_create' %}">{% translate 'New Video Cast Category' %}</a></li>
-                            <li><a href="{% url 'content:podcast_category_create' %}">{% translate 'New Podcast Category' %}</a></li>
-                        </ul>
-                    </li>
-                    {% endif %}
+
+
                 </ul>
             </nav>
             <!-- /Menu -->
 
-            <!-- Section - podcast -->
-            <section id="podcast">
-                <header class="major">
-                    <h2>{% translate 'The latest Podcasts' %}</h2>
-                </header>
-                <div class="mini-posts">
-                    {% for podcast in podcasts %}
-                        <article>
-                            <a href="{% url 'content:podcast_single' podcast.slug %}" class="image">
-                                <img src="{{ podcast.thumbnail.url }}" alt="{{ podcast.title }}"/>
-                            </a>
-                            <p>{{ podcast.content | safe |truncatewords_html:15 }}</p>
-                            <a href="{% url 'content:podcast_single' podcast.slug %}" class="button">{% translate 'More' %}</a>
-                        </article>
-                    {% endfor %}
-                </div>
-            </section>
-            <!-- /Section - podcast -->
 
             {% if config.GET_IN_TOUCH_ACTIVE == 'yes' %}
                 <!-- get_in_touch -->
@@ -184,8 +127,7 @@
             <!-- Footer -->
             <footer id="footer">
                 <p class="copyright">
-                    &copy; Untitled. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>. CMS: <a
-                        href="https://github.com/mavenium/PyEditorial" title="PyEditorial">PyEditorial</a></p>
+                    &copy; Untitled. All rights reserved. Design: <a href="/">HTML5 UP</a>. CMS: </p>
             </footer>
             <!-- /Footer -->
 

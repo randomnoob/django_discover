@@ -25,24 +25,6 @@
         <!-- /Banner -->
     {% endfor %}
 
-    <!-- Section - Skills -->
-    <section id="skills">
-        <header class="major">
-            <h2>{% translate 'Skills' %}</h2>
-        </header>
-        <div class="features">
-            {% for skill in skills %}
-                <article>
-                    <span class="icon solid {{ skill.icon }}"></span>
-                    <div class="content">
-                        <h3>{{ skill.title }}</h3>
-                        <p>{{ skill.description }}</p>
-                    </div>
-                </article>
-            {% endfor %}
-        </div>
-    </section>
-    <!-- /Section -->
 
     <!-- Section - blog -->
     <section id="blog">
@@ -68,27 +50,4 @@
     </section>
     <!-- /Section - blog -->
 
-    <!-- Section - Video Cast -->
-    <section id="videocast">
-        <header class="major">
-            <h2>{% translate 'The latest Video Casts' %}</h2>
-        </header>
-        <div class="posts">
-            {% for videocast in videocasts %}
-                <article>
-                    <a href="{% url 'content:videocast_single' videocast.slug %}" class="image" title="{{ videocast.title }}">
-                        <img src="{{ videocast.thumbnail.url }}" alt="{{ videocast.title }}"/>
-                    </a>
-                    <h3>{{ videocast.title }}</h3>
-                    <p>{{ videocast.content | safe | truncatewords_html:30 }}</p>
-                    <ul class="actions">
-                        <li>
-                            <a href="{% url 'content:videocast_single' videocast.slug %}" class="button" title="{{ videocast.title }}">{% translate 'More' %}</a>
-                        </li>
-                    </ul>
-                </article>
-            {% endfor %}
-        </div>
-    </section>
-    <!-- /Section - Video Cast -->
 {% endblock %}
