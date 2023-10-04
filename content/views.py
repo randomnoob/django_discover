@@ -14,8 +14,8 @@ class Index(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'last_blog': models.Blog.objects.order_by('-pk').filter(publish=True)[:1],
-            'blogs': models.Blog.objects.order_by('-pk').filter(publish=True)[1:5],
+            'last_blog': models.Post.objects.order_by('-pk').filter(publish=True)[:1],
+            'blogs': models.Post.objects.order_by('-pk').filter(publish=True)[1:5],
         }
         return render(request, self.template_name, context)
 
@@ -29,7 +29,7 @@ class Search(View):
             print('valid')
             query = form.cleaned_data['query']
             context = {
-                'blogs': models.Blog.objects.order_by('-pk').filter(
+                'blogs': models.Post.objects.order_by('-pk').filter(
                     Q(title__icontains=query) | Q(content__icontains=query)
                 ),
             }
@@ -38,39 +38,39 @@ class Search(View):
         return render(request, self.template_name, context)
 
 
-class BlogCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
-    model = models.BlogCategory
+class PostCategoryCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+    model = models.PostCategory
     fields = '__all__'
-    success_message = 'Blog category was created successfully'
+    success_message = 'Post category was created successfully'
 
     def get_success_url(self):
         return reverse('content:blog_category_create')
 
 
-class Blog(generic.ListView):
-    model = models.Blog
+class Post(generic.ListView):
+    model = models.Post
     template_name = 'blog_archive.html'
 
 
-class BlogCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
-    model = models.Blog
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+    model = models.Post
     fields = '__all__'
-    success_message = 'Blog was created successfully'
+    success_message = 'Post was created successfully'
 
     def get_success_url(self):
         return reverse('content:blog_create')
 
 
-class BlogArchiveByCategoryPK(generic.ListView):
-    model = models.Blog
+class PostArchiveByCategoryPK(generic.ListView):
+    model = models.Post
     template_name = 'blog_archive.html'
 
     def get_queryset(self):
         return self.model.objects.filter(category=self.kwargs['pk'])
 
 
-class BlogSingle(generic.DetailView):
-    model = models.Blog
+class PostSingle(generic.DetailView):
+    model = models.Post
     template_name = 'single.html'
 
     def get_queryset(self):
