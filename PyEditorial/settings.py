@@ -158,7 +158,8 @@ CKEDITOR_CONFIGS = {
 }
 
 # CONSTANCE Settings
-CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+# CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_BACKEND = 'constance.backends.memory.MemoryBackend'
 
 CONSTANCE_IGNORE_ADMIN_VERSION_CHECK = True
 
@@ -182,7 +183,7 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 }
 
 CONSTANCE_CONFIG = {
-    'SITE_TITLE': ('My Title', 'Website title'),
+    'SITE_TITLE': ('Hoa Sen Plus', 'Website title'),
     'SITE_HOMEPAGE': ('http://minipc:8000', _('Domain of this site!'), str),
     'SITE_ADDRESS': ('6 Nguyễn Văn Tráng, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh, Vietnam', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
