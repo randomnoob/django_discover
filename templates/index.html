@@ -1,53 +1,85 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load i18n %}
 
 {% block content %}
-    {% for last_post in last_blog %}
-        <!-- Banner -->
-        <section id="banner">
-            <div class="content">
-                <header>
-                    <h1>{{ last_post.title }}</h1>
-                </header>
-                <p>{{ last_post.content | safe | truncatewords_html:30 }}</p>
-                <ul class="actions">
-                    <li>
-                        <a href="{% url 'content:blog_single' last_post.slug %}" class="button big" title="{{ last_post.title }}">
-                            {% translate 'Learn More' %}
+<!-- Start Featured Post  -->
+
+<section class="utf_featured_post_area pt-4 no-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 pad-r">
+                <div class="utf_post_overaly_style content-bottom" style="height: 100%; max-height:365px">
+                    <div class="utf_post_thumb">
+                        <a href="https://leaders.edu.vn/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien">
+                            <img class="img-fluid img-cover" style="max-height: 365px;"
+                                data-original="https://cdn.tgdd.vn/2021/12/CookDishThumb/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien-thumb-620x620-1.jpg"
+                                alt="Cách làm bắp   ngô chiên bơ giòn thơm khó cưỡng, ăn là ghiền"
+                                src="https://cdn.tgdd.vn/2021/12/CookDishThumb/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien-thumb-620x620-1.jpg">
                         </a>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="utf_post_content">
+                        <h3 class="utf_post_title title-large">
+                            <a href="https://leaders.edu.vn/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien">Cách
+                                làm bắp ngô chiên bơ giòn thơm khó cưỡng, ăn là ghiền</a>
+                        </h3>
+                    </div>
+                </div>
             </div>
-            <span class="image object">
-                <img src="{{ last_post.thumbnail }}" alt="{{ last_post.title }}"/>
-            </span>
-        </section>
-        <!-- /Banner -->
-    {% endfor %}
-
-
-    <!-- Section - blog -->
-    <section id="blog">
-        <header class="major">
-            <h2>{% translate 'The latest Blogs' %}</h2>
-        </header>
-        <div class="posts">
-            {% for blog_post in blogs %}
-                <article>
-                    <a href="{% url 'content:blog_single' blog_post.slug %}" class="image" title="{{ blog_post.title }}">
-                        <img src="{{ blog_post.thumbnail }}" alt="{{ blog_post.title }}"/>
-                    </a>
-                    <h3>{{ blog_post.title }}</h3>
-                    <p>{{ blog_post.content | safe | truncatewords_html:30 }}</p>
-                    <ul class="actions">
-                        <li>
-                            <a href="{% url 'content:blog_single' blog_post.slug %}" class="button" title="{{ blog_post.title }}">{% translate 'More' %}</a>
-                        </li>
-                    </ul>
-                </article>
-            {% endfor %}
+            <div class="col-lg-5 col-md-12 pad-l">
+                <div class="row">
+                    {% for last_post in last_blog %}
+                    <div class="col-md-6 pad-r-small">
+                        <div class="utf_post_overaly_style contentTop utf_hot_post_bottom clearfix">
+                            <div class="utf_post_thumb">
+                                <a
+                                    href="https://leaders.edu.vn/3-cach-lam-trung-cut-chien-gion-sot-me-va-bo-toi-thom-ngon-don-gian">
+                                    <img class="img-fluid img-cover"
+                                        data-original="https://www.huongnghiepaau.com/wp-content/uploads/2021/01/mon-ngon-tu-trung-cut.jpg"
+                                        alt="3 Cách làm trứng cút chiên giòn sốt me và bơ tỏi thơm ngon đơn giản"
+                                        src="https://www.huongnghiepaau.com/wp-content/uploads/2021/01/mon-ngon-tu-trung-cut.jpg"
+                                        style="">
+                                </a>
+                            </div>
+                            <div class="utf_post_content">
+                                <h3 class="utf_post_title title-medium">
+                                    <a
+                                        href="https://leaders.edu.vn/3-cach-lam-trung-cut-chien-gion-sot-me-va-bo-toi-thom-ngon-don-gian">3
+                                        Cách làm trứng cút chiên giòn sốt me và bơ tỏi thơm ngon đơn giản</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-    </section>
-    <!-- /Section - blog -->
+    </div>
+</section>
+<!-- Start Featured Post  -->
+
+<!-- Section - blog -->
+<section id="blog">
+    <header class="major">
+        <h2>{% translate 'The latest Blogs' %}</h2>
+    </header>
+    <div class="posts">
+        {% for blog_post in blogs %}
+        <article>
+            <a href="{% url 'content:blog_single' blog_post.slug %}" class="image" title="{{ blog_post.title }}">
+                <img src="{{ blog_post.thumbnail }}" alt="{{ blog_post.title }}" />
+            </a>
+            <h3>{{ blog_post.title }}</h3>
+            <p>{{ blog_post.content | safe | truncatewords_html:30 }}</p>
+            <ul class="actions">
+                <li>
+                    <a href="{% url 'content:blog_single' blog_post.slug %}" class="button"
+                        title="{{ blog_post.title }}">{% translate 'More' %}</a>
+                </li>
+            </ul>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+<!-- /Section - blog -->
 
 {% endblock %}
