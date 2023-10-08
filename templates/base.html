@@ -2,150 +2,240 @@
 {% load i18n %}
 {% get_media_prefix as MEDIA_URL %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="author" content="">
     <title>{{ config.SITE_TITLE }}</title>
     <meta name="description" content="{{ config.SITE_DESCRIPTION }}">
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="{% static '/assets/css/main.css' %}"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" />
     <link rel="icon" href="{{ MEDIA_URL }}{{ config.SITE_FAVICON }}" type="image/png" sizes="16x16">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,shrink-to-fit=no">
+    <link rel="alternate" type="application/rss+xml" title="{{ config.SITE_TITLE }}"
+        href="{{ config.SITE_FEED_URL }}" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel='canonical' href="{{ config.SITE_HOMEPAGE }}" />
+    <link rel='amphtml' href="{{ config.SITE_HOMEPAGE }}/amp" />
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <!-- <meta name="google-site-verification" content="6IkEfnGIhDbsN7tWMcUcjLRVM67uJGJCrLFRfQGm5gA" /> -->
+
+    <link rel="stylesheet" href="{% static '/assets/base_css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/base_css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/base_css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/base_css/font-awesome.min.css' %}">
+
 </head>
-<body class="is-preload">
 
-<!-- Wrapper -->
-<div id="wrapper">
+<body class="main-body">
 
-    <!-- Main -->
-    <div id="main">
-        <div class="inner">
 
-            <!-- Header -->
-            <header id="header">
-                <a href="{% url 'content:index' %}" class="logo"><strong>{{ config.SITE_TITLE }}</strong></a>
-                <ul class="icons">
-                    {% if config.SOCIAL_NETWORKS_TWITTER_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_TWITTER_URL }}" class="icon brands fa-twitter"
-                               title="Twitter"><span class="label">{% translate 'Twitter' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_FACEBOOK_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_FACEBOOK_URL }}" class="icon brands fa-facebook-f"
-                               title="Facebook"><span class="label">{% translate 'Facebook' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_SNAPCHAT_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_SNAPCHAT_URL }}" class="icon brands fa-snapchat-ghost"
-                               title="Snapchat"><span class="label">{% translate 'Snapchat' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_INSTAGRAM_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_INSTAGRAM_URL }}" class="icon brands fa-instagram"
-                               title="Instagram"><span class="label">{% translate 'Instagram' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_MEDIUM_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_MEDIUM_URL }}" class="icon brands fa-medium-m"
-                               title="Medium"><span class="label">{% translate 'Medium' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_TELEGRAM_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_TELEGRAM_URL }}" class="icon brands fa-telegram"
-                               title="Telegram"><span class="label">{% translate 'Telegram' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_GITHUB_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_GITHUB_URL }}" class="icon brands fa-github"
-                               title="Github"><span class="label">{% translate 'Github' %}</span></a></li>
-                    {% endif %}
-                    {% if config.SOCIAL_NETWORKS_GITLAB_URL != '#' %}
-                        <li><a href="{{ config.SOCIAL_NETWORKS_GITLAB_URL }}" class="icon brands fa-gitlab"
-                               title="Gitlab"><span class="label">{% translate 'Gitlab' %}</span></a></li>
-                    {% endif %}
-                </ul>
-            </header>
-            <!-- /Header -->
+    <div class="body-inner">
+        <!-- Topbar Start -->
+        <div id="top-bar" class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <ul class="unstyled top-nav">
 
-            {% block content %}
-            {% endblock %}
-
-        </div>
-    </div>
-
-    <!-- Sidebar -->
-    <div id="sidebar">
-        <div class="inner">
-
-            <!-- Search -->
-            <section id="search" class="alt">
-                <form method="GET" action="{% url 'content:search' %}">
-                    <input type="text" name="query" id="query" placeholder="{% translate 'Search' %}" required>
-                </form>
-            </section>
-            <!-- /Search -->
-
-            <!-- Menu -->
-            <nav id="menu">
-                <header class="major">
-                    <h2>Menu</h2>
-                </header>
-                <ul>
-                    <li><a href="{% url 'content:index' %}">{% translate 'Home Page' %}</a></li>
-                    <li><a href="{% url 'content:blog' %}">{% translate 'Blog' %}</a></li>
-                    <li>
-                        <span class="opener">{% translate 'Blog Categories' %}</span>
-                        <ul>
-                            {% for blog_category in blog_categories %}
-                                <li><a href="{% url 'content:blog_archive_by_category_pk' blog_category.pk %}">{{ blog_category.title }}</a></li>
-                            {% endfor %}
                         </ul>
-                    </li>
-
-
-
-                </ul>
-            </nav>
-            <!-- /Menu -->
-
-
-            {% if config.GET_IN_TOUCH_ACTIVE == 'yes' %}
-                <!-- get_in_touch -->
-                <section id="get_in_touch">
-                    <header class="major">
-                        <h2>{% translate 'Get in touch' %}</h2>
-                    </header>
-                    <p>{{ config.GET_IN_TOUCH_INFO | safe }}</p>
-                    <ul class="contact">
-                        <li class="icon solid fa-envelope">
-                            <a href="mailto:{{ config.GET_IN_TOUCH_EMAIL_ADDRESS }}">{{ config.GET_IN_TOUCH_EMAIL_ADDRESS }}</a>
-                        </li>
-                        <li class="icon solid fa-phone">
-                            {{ config.GET_IN_TOUCH_PHONE }}
-                        </li>
-                        <li class="icon solid fa-home">
-                            {{ config.GET_IN_TOUCH_ADDRESS | safe }}
-                        </li>
-                    </ul>
-                </section>
-                <!-- /get_in_touch -->
-            {% endif %}
-
-            <!-- Footer -->
-            <footer id="footer">
-                <p class="copyright">
-                    &copy; Untitled. All rights reserved. Design: <a href="/">HTML5 UP</a>. CMS: </p>
-            </footer>
-            <!-- /Footer -->
-
+                    </div>
+                    <div class="col-md-4 top-social text-lg-right text-md-center">
+                        <ul class="unstyled">
+                            <li>
+                                <a title="Facebook" href="#">
+                                    <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                                </a>
+                                <a title="Twitter" href="#">
+                                    <span class="social-icon"><i class="fa fa-twitter"></i></span>
+                                </a>
+                                <a title="Google+" href="#">
+                                    <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                                </a>
+                                <a title="Linkdin" href="#">
+                                    <span class="social-icon"><i class="fa fa-linkedin"></i></span>
+                                </a>
+                                <a title="Rss" href="#">
+                                    <span class="social-icon"><i class="fa fa-rss"></i></span>
+                                </a>
+                                <a title="Skype" href="#">
+                                    <span class="social-icon"><i class="fa fa-skype"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Topbar End -->
+
+        <!-- Header start -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <div class="logo">
+                            <a href="{{ config.SITE_HOMEPAGE }}">
+                                <img src="{{ config.SITE_HOMEPAGE }}/storage/qIv6CZhpHfYEp4wjsqmlriX3nV6WouPo8pvTr6xN.jpg "
+                                    alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header End -->
+
+        <!-- Main Nav Start -->
+        <div class="utf_main_nav_area clearfix utf_sticky">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg col">
+                        <div class="utf_site_nav_inner float-left">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="true" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div id="navbarSupportedContent"
+                                class="collapse navbar-collapse navbar-responsive-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active">
+                                        <a href="{{ config.SITE_HOMEPAGE }}">Trang chủ</a>
+                                    </li>
+                                    {% for category in blog_categories %}
+                                    <li>
+                                        <a href="/{{ category.slug }}">{{ category.title }}</a>
+                                    </li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="utf_nav_search"> <span id="search"><i class="fa fa-search"></i></span> </div>
+                    <div class="utf_search_block" style="display: none;">
+                        <input type="text" class="form-control" placeholder="Enter your keywords...">
+                        <span class="utf_search_close">&times;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Nav End -->
+        
+        {% block content %}
+        {% endblock %}
+
+
+
+
+        <!-- Footer Start -->
+        <div id="footer" class="footer">
+            <div class="utf_footer_main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget contact-widget">
+                            <div class="widget-title">About Us</div>
+                            <ul>
+                                <li>
+                                    <div class="row clearfix content-line">
+                                        <div class="col-xs-9 column content-util">{{config.SITE_DESCRIPTION}}</div>
+                                    </div>
+                                </li>
+                                <li><i class="fa fa-home"></i>{{config.SITE_ADDRESS}}</li>
+                                </li> Website chúng tôi là web site cập nhật nội dung tự động từ google.com. Nội dung
+                                chỉ mang tính chất tham khảo
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
+                            <div class="widget-title">Danh mục</div>
+                            <ul>
+                                {% for category in blog_categories %}
+                                <li>
+                                    <i class="fa fa-angle-double-right"></i>
+                                    <a href="/{{ category.slug }}">
+                                        <span class="catTitle">{{ category.title }}</span>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget">
+                            <div class="widget-title">Trang</div>
+                            <div class="utf_list_post_block">
+                                <ul class="utf_list_post">
+                                    <li class="clearfix">
+                                        <div class="utf_post_block_style post-float clearfix">
+                                            <div class="utf_post_content">
+                                                <h2 class="utf_post_title title-small">
+                                                    <a href="{{ config.SITE_HOMEPAGE }}/chuyen-doi-muc-dich-su-dung">Chuyển
+                                                        đổi mục đích sử dụng</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="utf_post_block_style post-float clearfix">
+                                            <div class="utf_post_content">
+                                                <h2 class="utf_post_title title-small">
+                                                    <a href="{{ config.SITE_HOMEPAGE }}/noi-quy">Nội Quy</a>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 text-center">
+                        <div class="utf_copyright_info"> <span>Copyright © 2023 All Rights Reserved.</span> </div>
+                    </div>
+                </div>
+                <div id="back-to-top" class="back-to-top">
+                    <button class="btn btn-primary" title="Back to Top"> <i class="fa fa-angle-up"></i> </button>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
     </div>
+    <!-- Javascript Files -->
+    <script src="{% static '/assets/base_js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static '/assets/base_js/popper.min.js' %}"></script>
+    <script src="{% static '/assets/base_js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/base_js/smoothscroll.js' %}"></script>
+    <script src="{% static '/assets/base_js/custom_script.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js" integrity="sha512-jNDtFf7qgU0eH/+Z42FG4fw3w7DM/9zbgNPe3wfJlCylVDTT3IgKW5r92Vy9IHa6U50vyMz5gRByIu4YIXFtaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-</div>
-
-<!-- Scripts -->
-<script src="{% static '/assets/js/jquery.min.js' %}"></script>
-<script src="{% static '/assets/js/browser.min.js' %}"></script>
-<script src="{% static '/assets/js/breakpoints.min.js' %}"></script>
-<script src="{% static '/assets/js/util.js' %}"></script>
-<script src="{% static '/assets/js/main.js' %}"></script>
-<!-- /Scripts -->
-
-{% block custom_script %}
-{% endblock custom_script %}
-
+    <script type="text/javascript">
+        $(function () {
+            $("img.img-fluid").lazyload({
+                effect: "fadeIn"
+            });
+            $("img.img-fluid-cover").lazyload({
+                effect: "fadeIn"
+            });
+        });
+    </script>
 </body>
+
 </html>

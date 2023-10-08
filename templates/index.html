@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 
 {% block content %}
@@ -7,79 +7,268 @@
 <section class="utf_featured_post_area pt-4 no-padding">
     <div class="container">
         <div class="row">
+            {% with blog_post=blogs.0 %}
             <div class="col-lg-7 col-md-12 pad-r">
                 <div class="utf_post_overaly_style content-bottom" style="height: 100%; max-height:365px">
                     <div class="utf_post_thumb">
-                        <a href="https://leaders.edu.vn/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien">
+                        <a href="{% url 'content:blog_single' blog_post.slug %}">
                             <img class="img-fluid img-cover" style="max-height: 365px;"
-                                data-original="https://cdn.tgdd.vn/2021/12/CookDishThumb/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien-thumb-620x620-1.jpg"
-                                alt="Cách làm bắp   ngô chiên bơ giòn thơm khó cưỡng, ăn là ghiền"
-                                src="https://cdn.tgdd.vn/2021/12/CookDishThumb/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien-thumb-620x620-1.jpg">
+                                data-original="{{ blog_post.thumbnail }}" alt="{{ blog_post.title }}"
+                                src="{{ blog_post.thumbnail }}">
                         </a>
                     </div>
                     <div class="utf_post_content">
                         <h3 class="utf_post_title title-large">
-                            <a href="https://leaders.edu.vn/cach-lam-bap-ngo-chien-bo-gion-thom-kho-cuong-an-la-ghien">Cách
-                                làm bắp ngô chiên bơ giòn thơm khó cưỡng, ăn là ghiền</a>
+                            <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
                         </h3>
                     </div>
                 </div>
             </div>
+            {% endwith %}
+
             <div class="col-lg-5 col-md-12 pad-l">
                 <div class="row">
-                    {% for last_post in last_blog %}
-                    <div class="col-md-6 pad-r-small">
+                    {% with blogs=blogs|slice:"1:5" %}
+                    {% for blog_post in blogs %}
+
+                    <div class="col-md-6 pad-{% cycle 'r' 'l' %}-small">
                         <div class="utf_post_overaly_style contentTop utf_hot_post_bottom clearfix">
                             <div class="utf_post_thumb">
-                                <a
-                                    href="https://leaders.edu.vn/3-cach-lam-trung-cut-chien-gion-sot-me-va-bo-toi-thom-ngon-don-gian">
-                                    <img class="img-fluid img-cover"
-                                        data-original="https://www.huongnghiepaau.com/wp-content/uploads/2021/01/mon-ngon-tu-trung-cut.jpg"
-                                        alt="3 Cách làm trứng cút chiên giòn sốt me và bơ tỏi thơm ngon đơn giản"
-                                        src="https://www.huongnghiepaau.com/wp-content/uploads/2021/01/mon-ngon-tu-trung-cut.jpg"
-                                        style="">
+                                <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                    <img class="img-fluid img-cover" data-original="{{ blog_post.thumbnail }}"
+                                        alt="{{ blog_post.title }}" src="{{ blog_post.thumbnail }}" style="">
                                 </a>
                             </div>
                             <div class="utf_post_content">
                                 <h3 class="utf_post_title title-medium">
-                                    <a
-                                        href="https://leaders.edu.vn/3-cach-lam-trung-cut-chien-gion-sot-me-va-bo-toi-thom-ngon-don-gian">3
-                                        Cách làm trứng cút chiên giòn sốt me và bơ tỏi thơm ngon đơn giản</a>
+                                    <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
                                 </h3>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                    {% endwith %}
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Start Featured Post  -->
+<!-- End Featured Post  -->
 
-<!-- Section - blog -->
-<section id="blog">
-    <header class="major">
-        <h2>{% translate 'The latest Blogs' %}</h2>
-    </header>
-    <div class="posts">
-        {% for blog_post in blogs %}
-        <article>
-            <a href="{% url 'content:blog_single' blog_post.slug %}" class="image" title="{{ blog_post.title }}">
-                <img src="{{ blog_post.thumbnail }}" alt="{{ blog_post.title }}" />
-            </a>
-            <h3>{{ blog_post.title }}</h3>
-            <p>{{ blog_post.content | safe | truncatewords_html:30 }}</p>
-            <ul class="actions">
-                <li>
-                    <a href="{% url 'content:blog_single' blog_post.slug %}" class="button"
-                        title="{{ blog_post.title }}">{% translate 'More' %}</a>
-                </li>
-            </ul>
-        </article>
-        {% endfor %}
+
+
+
+<!-- Start Blog  -->
+<section class="utf_block_wrapper p-bottom-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="utf_featured_tab color-blue">
+                            <h2 class="utf_block_title"><span>Hỏi Đáp</span></h2>
+
+                            <div class="row">
+                                {% with blog_post=blogs.0 %}
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="utf_post_block_style clearfix">
+                                        <div class="utf_post_thumb">
+                                            <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                <img class="img-fluid img-cover"
+                                                    data-original="{{ blog_post.thumbnail }}"
+                                                    alt="{{ blog_post.title }}">
+                                            </a>
+                                        </div>
+                                        <div class="utf_post_content">
+                                            <h3 class="utf_post_title">
+                                                <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                            </h3>
+                                            <div class="utf_post_meta">
+                                                <span class="utf_post_date">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{ blog_post.created_on }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endwith %}
+
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="utf_list_post_block">
+                                        <ul class="utf_list_post">
+                                            {% with blogs=blogs|slice:"1:5" %}
+                                            {% for blog_post in blogs %}
+                                            <li class="clearfix">
+                                                <div class="utf_post_block_style post-float clearfix">
+                                                    <div class="utf_post_thumb">
+                                                        <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                            <img class="img-fluid img-cover"
+                                                                data-original="{{ blog_post.thumbnail }}"
+                                                                alt="{{ blog_post.title }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="utf_post_content">
+                                                        <h3 class="utf_post_title title-small">
+                                                            <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                                        </h3>
+                                                        <div class="utf_post_meta">
+                                                            <span class="utf_post_date">
+                                                                <i class="fa fa-clock-o"></i>
+                                                                {{ blog_post.created_on }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                            {% endwith %}
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gap-30"></div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="block color-dark-blue">
+                            <h2 class="utf_block_title"><span>Khám Phá Hàn Quốc</span></h2>
+                            <div class="utf_list_post_block">
+                                <ul class="utf_list_post">
+                                    {% with blogs=blogs|slice:":5" %}
+                                    {% for blog_post in blogs %}
+                                    <li class="clearfix">
+                                        <div class="utf_post_block_style post-float clearfix">
+                                            <div class="utf_post_thumb">
+                                                <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                    <img class="img-fluid img-cover"
+                                                        data-original="{{ blog_post.thumbnail }}"
+                                                        alt="{{ blog_post.title }}"
+                                                        style="">
+                                                </a>
+                                            </div>
+                                            <div class="utf_post_content">
+                                                <h3 class="utf_post_title title-small">
+                                                    <a
+                                                        href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                                </h3>
+                                                <div class="utf_post_meta">
+                                                    <span class="utf_post_date">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        {{ blog_post.created_on }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                    {% endwith %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="gap-30"></div>
+                    </div>
+        
+                    <div class="col-lg-6">
+                        <div class="block color-dark-blue">
+                            <h2 class="utf_block_title"><span>Khám Phá Hàn Quốc</span></h2>
+                            <div class="utf_list_post_block">
+                                <ul class="utf_list_post">
+                                    {% with blogs=blogs|slice:":5" %}
+                                    {% for blog_post in blogs %}
+                                    <li class="clearfix">
+                                        <div class="utf_post_block_style post-float clearfix">
+                                            <div class="utf_post_thumb">
+                                                <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                    <img class="img-fluid img-cover"
+                                                        data-original="{{ blog_post.thumbnail }}"
+                                                        alt="{{ blog_post.title }}"
+                                                        style="">
+                                                </a>
+                                            </div>
+                                            <div class="utf_post_content">
+                                                <h3 class="utf_post_title title-small">
+                                                    <a
+                                                        href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                                </h3>
+                                                <div class="utf_post_meta">
+                                                    <span class="utf_post_date">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        {{ blog_post.created_on }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                    {% endwith %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="gap-30"></div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar utf_sidebar_right">
+                    <div class="widget color-violet">
+                        <div class="utf_block_title"><span>Phổ biến</span></div>
+                        <div class="utf_list_post_block">
+                            <ul class="utf_list_post">
+                                {% for blog_post in blogs %}
+                                <li class="clearfix">
+                                    <div class="utf_post_block_style post-float clearfix">
+                                        <div class="utf_post_thumb">
+                                            <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                <img class="img-fluid img-cover"
+                                                    data-original="{{ blog_post.thumbnail }}"
+                                                    alt="{{ blog_post.title }}">
+                                            </a>
+                                        </div>
+                                        <div class="utf_post_content">
+                                            <h3 class="utf_post_title title-small">
+                                                <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                            </h3>
+                                            <div class="utf_post_meta">
+                                                <span class="utf_post_date">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{ blog_post.created_on }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
     </div>
 </section>
-<!-- /Section - blog -->
+<!-- End Blog  -->
+
 
 {% endblock %}
