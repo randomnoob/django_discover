@@ -1,0 +1,28 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "{% if homepage %}{{ homepage }}/#organization{% endif %}",
+    "name": "{% if sitename %}{{ sitename }}{% endif %}",
+    "url": "{% if homepage %}{{ homepage }}{% endif %}",
+    "logo": "{% if logo %}{{ logo }}{% endif %}",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Tầng 5, Tòa nhà FPT Cầu Giấy, phố Duy Tân, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội.",
+        "addressLocality": "Hà Nội City",
+        "addressRegion": "Northeast",
+        "postalCode": "100000",
+        "addressCountry": "VNM"
+    },
+    "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+84-123-888-0123",
+            "contactType": "customer service"
+    },
+    "description": "{% if description %}{{ description }}{% endif %}",
+    "sameAs": [
+        "{% if facebook %}{{ facebook }}{%else%}https://www.facebook.com/{{sitename}}{% endif %}",
+        "{% if twitter %}{{ twitter }}{%else%}https://www.twitter.com/{{sitename}}{% endif %}",
+        "{% if pinterest %}{{ pinterest }}{%else%}https://www.pinterest.com/{{sitename}}{% endif %}",
+        "{% if youtube %}{{ youtube }}{%else%}https://www.youtube.com/@{{sitename}}{% endif %}"
+    ]
+}

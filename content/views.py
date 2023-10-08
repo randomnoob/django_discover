@@ -14,8 +14,8 @@ class Index(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'last_blog': models.Post.objects.order_by('-pk').filter(publish=True)[:1],
-            'blogs': models.Post.objects.order_by('-pk').filter(publish=True)[1:5],
+            'last_blog': models.Post.objects.order_by('-pk').filter(status=0)[:1],
+            'blogs': models.Post.objects.order_by('-pk').filter(status=0)[1:5],
         }
         return render(request, self.template_name, context)
 

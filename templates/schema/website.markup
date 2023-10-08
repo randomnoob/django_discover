@@ -1,0 +1,12 @@
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "{% if sitename %}{{ sitename }}{% endif %}",
+    "alternateName": "{% if description %}{{ description }}{% endif %}",
+    "url": "{% if homepage %}{{ homepage }}{% endif %}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{% if homepage %}{{ homepage }}{% endif %}/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}

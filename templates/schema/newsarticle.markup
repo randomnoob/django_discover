@@ -1,0 +1,37 @@
+{
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://vnexpress.net/quan-quan-olympia-xuan-manh-em-da-may-man-4662279.html"
+    },
+    "headline": "Quán quân Olympia Xuân Mạnh: 'Em đã may mắn'",
+    "description": "Nam sinh xứ Thanh nói tất cả bạn chơi đều rất giỏi nhưng em đã may mắn hơn, giành ngôi quán quân đầy kịch tính ở phút chót của trận chung kết Olympia năm 2023.",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://i1-vnexpress.vnecdn.net/2023/10/08/d3ac14804f079b59c216-jpeg-1696-8241-3609-1696743725.jpg?w=900&h=540&q=100&dpr=1&fit=crop&s=El4-w_SnI6fmB4PR5yF34A",
+        "width": 900,
+        "height": 540
+    },
+    "datePublished": "2023-10-08T13:00:38+07:00",
+    "dateModified": "2023-10-08T14:14:43+07:00",
+    "author": {
+        "@type": "Organization",
+        "name": "VnExpress"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "VnExpress",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://s1.vnecdn.net/vnexpress/restruct/i/v808/logos/vnexpress_500x110.png",
+            "width": 500,
+            "height": 112
+        }
+    },
+    "about": [
+        "Thanh Hóa",
+        "Đường lên đỉnh Olympia",
+        "Tin nóng"
+    ]
+}
