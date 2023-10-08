@@ -1,0 +1,37 @@
+<div class="col-lg-4 col-md-12">
+    <div class="sidebar utf_sidebar_right">
+        <div class="widget color-violet">
+            <div class="utf_block_title"><span>Phổ biến</span></div>
+            <div class="utf_list_post_block">
+                <ul class="utf_list_post">
+                    {% for blog_post in popular_posts %}
+                    <li class="clearfix">
+                        <div class="utf_post_block_style post-float clearfix">
+                            <div class="utf_post_thumb">
+                                <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                    <img class="img-fluid img-cover"
+                                        data-original="{{ blog_post.thumbnail }}"
+                                        alt="{{ blog_post.title }}">
+                                </a>
+                            </div>
+                            <div class="utf_post_content">
+                                <h3 class="utf_post_title title-small">
+                                    <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                </h3>
+                                <div class="utf_post_meta">
+                                    <span class="utf_post_date">
+                                        <i class="fa fa-clock-o"></i>
+                                        {{ blog_post.created_on }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>

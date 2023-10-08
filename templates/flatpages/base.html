@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="section section-lg pt-5 pt-md-7 bg-gray-200">
+    <div class="container">
+        <div class="row pt-5 pt-md-0">
+            <div class="col-12">
+                <div class="content-wrapper">
+                    {% block flatpage_content %}
+                    {% endblock flatpage_content %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

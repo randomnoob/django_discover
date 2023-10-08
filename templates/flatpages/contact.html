@@ -1,0 +1,43 @@
+{% extends 'flatpages/base.html' %}
+
+{% block flatpage_content %}
+<h1>
+    Contact Us</h1>
+
+    <p>To ask a homework question, please <a href="{{site_homepage}}/ask">Ask a New Question</a> on our website.</p>
+    <h2>Advertising</h2>
+    <p>Please send all advertising-related inquiries to
+        <script>
+            document.write(advertisingHtml);
+        </script><a href="mailto:advertising@{{site_domain}}">advertising@{{site_domain}}</a>
+    </p>
+    <h2>Careers</h2>
+    <p>Interested in working with us? Please send your cover letter and resume to
+        <script>
+            document.write(careersHtml);
+        </script><a href="mailto:careers@{{site_domain}}">careers@{{site_domain}}</a>
+    </p>
+    <h2>Copyright</h2>
+    <p>For copyright-related inquiries, or to submit a DMCA notice, please email
+        <script>
+            document.write(copyrightHtml);
+        </script><a href="mailto:copyright@{{site_domain}}">copyright@{{site_domain}}</a>
+    </p>
+    <p>The complete contact information for our copyright agent is:</p>
+    <p>Attn: {{site_name}} Copyright Agent<br>
+        {{site_name}}<br>
+        Email: <a href="mailto:copyright@{{site_domain}}">copyright@{{site_domain}}</a>
+    </p>
+    <p>It is {{site_name}}'s policy, in appropriate circumstances, to terminate the user accounts of visitors who are
+        repeatedly charged with infringing copyrights. If a visitor does not have a user account and has been repeatedly
+        charged with
+        infringing copyrights by posting content anonymously, then {{site_name}} may programmatically prevent the visitor's
+        IP address from posting additional content on our website.</p>
+    <h2>Questions, Comments, and Feedback</h2>
+    <p>For all other inquiries, please email us at
+        <script>
+            document.write(webmasterHtml);
+        </script><a href="mailto:webmaster@{{site_domain}}">webmaster@{{site_domain}}</a>
+    </p>
+
+{% endblock flatpage_content %}

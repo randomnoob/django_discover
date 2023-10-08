@@ -24,7 +24,7 @@ class Index(View):
 
 class PostSingle(DetailView):
     model = models.Post
-    template_name = 'single.html'
+    template_name = 'content/post.html'
 
     def get_queryset(self):
         return self.model.objects.filter(slug=self.kwargs['slug'])

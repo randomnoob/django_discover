@@ -7,20 +7,22 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="author" content="">
-    <title>{{ config.SITE_TITLE }}</title>
-    <meta name="description" content="{{ config.SITE_DESCRIPTION }}">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" />
     <link rel="icon" href="{{ MEDIA_URL }}{{ config.SITE_FAVICON }}" type="image/png" sizes="16x16">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,shrink-to-fit=no">
-    <link rel="alternate" type="application/rss+xml" title="{{ config.SITE_TITLE }}"
-        href="{{ config.SITE_FEED_URL }}" />
-    <meta name="robots" content="index, follow" />
 
+    {% block head_tag %}
+    <title>{{ config.SITE_TITLE }}</title>
+    <meta name="description" content="{{ config.SITE_DESCRIPTION }}">
     <link rel='canonical' href="{{ config.SITE_HOMEPAGE }}" />
     <link rel='amphtml' href="{{ config.SITE_HOMEPAGE }}/amp" />
+    {% endblock %}
+    <link rel="alternate" type="application/rss+xml" title="{{ config.SITE_TITLE }}" href="{{ config.SITE_FEED_URL }}" />
+    <meta name="robots" content="index, follow" />
+
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800&display=swap" rel="stylesheet">
@@ -83,7 +85,7 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="logo">
                             <a href="{{ config.SITE_HOMEPAGE }}">
-                                <img src="{{ config.SITE_HOMEPAGE }}/storage/qIv6CZhpHfYEp4wjsqmlriX3nV6WouPo8pvTr6xN.jpg "
+                                <img src="{% static '/assets/afamily_logo_30052022.svg' %}"
                                     alt="">
                             </a>
                         </div>

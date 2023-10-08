@@ -182,9 +182,9 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 }
 
 CONSTANCE_CONFIG = {
-    'SITE_TITLE': ('My Blog', _('Title of this site!'), str),
+    'SITE_TITLE': ('My Title', 'Website title'),
     'SITE_HOMEPAGE': ('http://minipc:8000', _('Domain of this site!'), str),
-    'SITE_ADDRESS': ('khu đô thị Trung Yên, Trung Hòa, Cầu Giấy, Hà Nội', _('Address of this site!'), str),
+    'SITE_ADDRESS': ('6 Nguyễn Văn Tráng, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh, Vietnam', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
     'SITE_FAVICON': ('default_favicon.png', _('Favicon of this site!'), 'image_field'),
     'SITE_FEED_URL': ('feed', _('Feed URL of the site!'), str),
@@ -208,6 +208,9 @@ CONSTANCE_CONFIG = {
 CONSTANCE_CONFIG_FIELDSETS = {
     'General Options': (
         'SITE_TITLE',
+        'SITE_HOMEPAGE',
+        'SITE_ADDRESS',
+        'SITE_FEED_URL',
         'SITE_DESCRIPTION',
         'SITE_FAVICON',
     ),
