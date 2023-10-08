@@ -9,6 +9,12 @@ STATUS = (
     (1,"Publish")
 )
 
+def get_default_user():
+    try:
+        user = User.objects.get(username = "M. Trang")
+    except:
+        user = User.objects.create_user("M. Trang", "mtrang@gmail.com", "mtrangpassword")
+    return user
 
 class PostCategory(models.Model):
     title = models.CharField(
@@ -49,6 +55,11 @@ class Post(models.Model):
         null=False,
         blank=False
     )
+    thumbnail = models.CharField(
+        max_length=1024,
+        verbose_name=_('Thumbnail URL :'),
+        default="https://afamilycdn.com/thumb_w/250/150157425591193600/2023/10/3/banh-tortilla-ga-cuon-8-16963228568751458823194-112-0-612-800-crop-1696324527645754379197.jpg"
+    )
     category = models.ForeignKey(
         PostCategory,
         on_delete=models.CASCADE,
@@ -57,7 +68,8 @@ class Post(models.Model):
     author = models.ForeignKey(
         User,
         on_delete= models.CASCADE,
-        related_name='blog_posts'
+        related_name='blog_posts',
+        default=get_default_user
     )
 
     content = models.TextField()
