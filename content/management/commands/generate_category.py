@@ -24,12 +24,8 @@ class Command(BaseCommand):
             'Tâm sự', #https://afamily.vn/tam-su.chn
         ]
         for cate_name in categories:
-            try:
-                category = PostCategory.objects.create(name=cate_name, slug=slugify(cate_name))
-                category.save()
-
-            except:
-                pass
+            category = PostCategory.objects.create(title=cate_name, slug=slugify(cate_name))
+            category.save()
 
             self.stdout.write(
                 self.style.SUCCESS('Successfully added PostCategory "%s"' % cate_name)

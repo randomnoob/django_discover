@@ -1,4 +1,5 @@
 {% extends 'content/sidebar-layout.html' %}
+{% load static %}
 
 {% block head_tag %}
 <title>{{ object.title }}</title>
@@ -34,7 +35,11 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="utf_post_thumb thumb-float-style">
                             <a href="{% url 'content:blog_single' blog_post.slug %}">
-                                <img class="img-fluid img-cover" data-original="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}" alt="{{ blog_post.title }}">
+                                <img class="img-fluid img-cover" data-original="{%if blog_post.thumbnail%}
+                                {{ blog_post.thumbnail }}
+                                {%else%}
+                                {% static '/assets/images/na.png' %}
+                                {%endif%}" alt="{{ blog_post.title }}">
                             </a>
                         </div>
                     </div>
@@ -46,7 +51,7 @@
                             <div class="utf_post_meta">
                                 <span class="utf_post_date">
                                     <i class="fa fa-clock-o"></i>
-                                    {{blog_post.created_on|date:"d/m/y}}
+                                    {{blog_post.created_on|date:"d/m/y"}}
                                 </span>
                             </div>
                             <div class="excerpt">

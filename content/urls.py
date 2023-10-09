@@ -16,7 +16,7 @@ urlpatterns = flatpages + [
     path('', views.Index.as_view(), name='index'),
     # path('search/', views.Search.as_view(), name='search'),
     # path('blog/<int:pk>/', views.PostArchiveByCategoryPK.as_view(), name='blog_archive_by_category_pk'),
-    path('<slug:slug>', views.PostSingle.as_view(), name='blog_single'),
     path('<slug:slug>/', views.CategoryDetailView.as_view(), name='category_single'),
+    path('<slug:slug>', views.PostSingle.as_view(), name='blog_single'),
     path('user/<int:pk>/', views.UserDetailView.as_view(), name='user_single'),
 ]

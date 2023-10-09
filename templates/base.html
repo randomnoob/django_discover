@@ -114,7 +114,7 @@
                                     </li>
                                     {% for category in blog_categories %}
                                     <li>
-                                        <a href="/{{ category.slug }}">{{ category.title }}</a>
+                                        <a href="{% url 'content:category_single' category.slug %}">{{ category.title }}</a>
                                     </li>
                                     {% endfor %}
 
