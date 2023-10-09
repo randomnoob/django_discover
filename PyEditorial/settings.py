@@ -243,4 +243,31 @@ LOGIN_REDIRECT_URL = 'content:index'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'content:index'
 
+SCRAPE_LIST = {
+    'Dạy con': 'https://afamily.vn/timeline-type/245/homev2/trang-1.chn',
+    'Chuyện gia đình': 'https://afamily.vn/timeline-type/156/homev2/trang-1.chn',
+    'Chuyện yêu': 'https://afamily.vn/timeline-type/188/homev2/trang-1.chn',
+    'Hẹn hò': 'https://afamily.vn/timeline-type/155/homev2/trang-1.chn',
+    'Sống khỏe': 'https://afamily.vn/timeline-type/185/homev2/trang-1.chn',
+    'Tư vấn tình dục': 'https://afamily.vn/timeline-tag/suc-khoe/tu-van-tinh-duc/trang-1.chn',
+    'Ngắm': 'https://afamily.vn/timeline-type/184/homev2/trang-1.chn',
+    'Chi tiêu': 'https://afamily.vn/timeline-type/237/homev2/trang-1.chn',
+    'Vào bếp': 'https://afamily.vn/timeline-type/54/homev2/trang-1.chn',
+    'Mẹo vặt gia đình': 'https://afamily.vn/timeline-type/248/homev2/trang-1.chn',
+    'Tâm sự': 'https://afamily.vn/timeline-type/37/homev2/trang-1.chn',
+ }
 
+
+BLOG_CATEGORIES = [
+    'Dạy con', #https://afamily.vn/giao-duc/day-con.chn
+    'Chuyện gia đình', #https://afamily.vn/yeu/chuyen-gia-dinh.chn
+    'Chuyện yêu', #https://afamily.vn/yeu/chuyen-yeu.chn
+    'Hẹn hò', #https://afamily.vn/yeu/hen-ho.chn
+    'Sống khỏe', #https://afamily.vn/suc-khoe/song-khoe.chn
+    'Tư vấn tình dục', # https://afamily.vn/suc-khoe/tu-van-tinh-duc.html
+    'Ngắm', # https://afamily.vn/tieu-dung/ngam.chn
+    'Chi tiêu', #https://afamily.vn/tieu-dung/chi-tieu.chn
+    'Vào bếp', #https://afamily.vn/an-ngon/toi-vao-bep.chn
+    'Mẹo vặt gia đình', #https://afamily.vn/an-ngon/meo-vat.chn
+    'Tâm sự', #https://afamily.vn/tam-su.chn
+]

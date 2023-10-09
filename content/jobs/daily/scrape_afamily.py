@@ -10,6 +10,8 @@ from content.models import Post, PostCategory
 from bs4 import BeautifulSoup
 import requests
 
+from PyEditorial import BLOG_CATEGORIES
+
 class Job(DailyJob):
     help = "Scrape from afamily.vn category Nau An https://afamily.vn/an-ngon.chn"
 
