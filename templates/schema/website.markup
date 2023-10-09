@@ -1,12 +1,12 @@
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
-    "name": "{% if sitename %}{{ sitename }}{% endif %}",
-    "alternateName": "{% if description %}{{ description }}{% endif %}",
-    "url": "{% if homepage %}{{ homepage }}{% endif %}",
+    "name": "{% if config.SITE_TITLE %}{{ config.SITE_TITLE }}{% endif %}",
+    "alternateName": "{% if config.SITE_DESCRIPTION %}{{ config.SITE_DESCRIPTION }}{% endif %}",
+    "url": "{% if config.SITE_HOMEPAGE %}{{ config.SITE_HOMEPAGE }}{% endif %}",
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "{% if homepage %}{{ homepage }}{% endif %}/?q={search_term_string}",
+        "target": "{% if config.SITE_HOMEPAGE %}{{ config.SITE_HOMEPAGE }}{% endif %}/?q={search_term_string}",
         "query-input": "required name=search_term_string"
     }
 }

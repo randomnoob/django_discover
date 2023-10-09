@@ -1,28 +1,28 @@
 {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "{% if homepage %}{{ homepage }}/#organization{% endif %}",
-    "name": "{% if sitename %}{{ sitename }}{% endif %}",
-    "url": "{% if homepage %}{{ homepage }}{% endif %}",
-    "logo": "{% if logo %}{{ logo }}{% endif %}",
+    "@id": "{% if config.SITE_HOMEPAGE %}{{ config.SITE_HOMEPAGE }}/#organization{% endif %}",
+    "name": "{% if config.SITE_TITLE %}{{ config.SITE_TITLE }}{% endif %}",
+    "url": "{% if config.SITE_HOMEPAGE %}{{ config.SITE_HOMEPAGE }}{% endif %}",
+    "logo": "{% if config.SITE_LOGO %}{{ config.SITE_LOGO }}{% endif %}",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Tầng 5, Tòa nhà FPT Cầu Giấy, phố Duy Tân, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội.",
-        "addressLocality": "Hà Nội City",
-        "addressRegion": "Northeast",
+        "streetAddress": "{{config.SITE_ADDRESS}}",
+        "addressLocality": "{{config.SITE_CITY}}",
+        "addressRegion": "Southeast",
         "postalCode": "100000",
         "addressCountry": "VNM"
     },
     "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+84-123-888-0123",
+            "telephone": "+84-123-666-3215",
             "contactType": "customer service"
     },
-    "description": "{% if description %}{{ description }}{% endif %}",
+    "description": "{% if config.SITE_DESCRIPTION %}{{ config.SITE_DESCRIPTION }}{% endif %}",
     "sameAs": [
-        "{% if facebook %}{{ facebook }}{%else%}https://www.facebook.com/{{sitename}}{% endif %}",
-        "{% if twitter %}{{ twitter }}{%else%}https://www.twitter.com/{{sitename}}{% endif %}",
-        "{% if pinterest %}{{ pinterest }}{%else%}https://www.pinterest.com/{{sitename}}{% endif %}",
-        "{% if youtube %}{{ youtube }}{%else%}https://www.youtube.com/@{{sitename}}{% endif %}"
+        "{% if config.FACEBOOK %}{{ config.FACEBOOK }}{%else%}https://www.facebook.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
+        "{% if config.TWITTER %}{{ config.TWITTER }}{%else%}https://www.twitter.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
+        "{% if config.PINTEREST %}{{ config.PINTEREST }}{%else%}https://www.pinterest.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
+        "{% if config.YOUTUBE %}{{ config.YOUTUBE }}{%else%}https://www.youtube.com/@{{config.SITE_SOCIAL_USERNAME}}{% endif %}"
     ]
 }

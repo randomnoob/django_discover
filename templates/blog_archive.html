@@ -13,7 +13,7 @@
             {% for object in object_list %}
                 <article>
                     <a href="{% url 'content:blog_single' object.slug %}" class="image" title="{{ object.title }}">
-                        <img src="{{ object.thumbnail.url }}" alt="{{ object.title }}"/>
+                        <img src="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}" alt="{{ object.title }}"/>
                     </a>
                     <h3>{{ object.title }}</h3>
                     <p>{{ object.content | safe | truncatewords_html:30 }}</p>

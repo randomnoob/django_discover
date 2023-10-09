@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% load i18n %}
+{% extends 'content/sidebar-layout.html' %}
 
 {% block head_tag %}
 <title>{{ object.title }}</title>
@@ -10,42 +9,21 @@
 
 
 
-{% block content %}
+{% block content_body %}
 
-<!-- Content -->
-
-<div class="page-title">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><a href="{{config.SITE_HOMEPAGE}}">Trang chủ</a></li>
-                    <li>
-                        <a href="{{config.SITE_HOMEPAGE}}/{{object.category.slug}}">{{object.category}}</a>
-                    </li>
-                    <li>{{ object.title }}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="utf_block_wrapper p-bottom-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
+<!-- Content Body -->
                 <div class="single-post">
                     <div class="utf_post_title-area">
                         <h1 class="utf_post_title">{{ object.title }}</h1>
                         <div class="utf_post_meta">
                             <span class="utf_post_author">By
-                                <a href="">
-                                    Admin
+                                <a href="{% url 'content:user_single' object.author.pk %}">
+                                    {{object.author}}
                                 </a>
                             </span>
                             <span class="utf_post_date">
                                 <i class="fa fa-clock-o"></i>
-                                08/10/2023
+                                {{ object.created_on|date:"d/m/y" }}
                             </span>
                             <span class="post-comment">
                                 <i class="fa fa-comments-o"></i>
@@ -124,18 +102,10 @@
                     </form>
                 </div>
                 <div class="gap-30"></div>
-            </div>
 
-            {% include "content/sidebar.html" %}
+<!-- /Content Body -->
 
-
-
-        </div>
-    </div>
-    </div>
-    </div>
-</section>
-
-
-<!-- /Content -->
-{% endblock %}
+<script type="application/ld+json">
+    {% include 'schema/newsarticle.markup' %}
+</script>
+{% endblock content_body %}

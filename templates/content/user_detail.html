@@ -1,0 +1,33 @@
+{% extends 'content/sidebar-layout.html' %}
+
+{% block head_tag %}
+<title>{{ object.title }}</title>
+<meta name="description" content="{{ object.title }}">
+<link rel='canonical' href="{% url 'content:user_single' object.pk %}" />
+<link rel='amphtml' href="{% url 'content:user_single' object.pk %}/amp" />
+{% endblock %}
+
+
+{% block breadcrumb %}
+<div class="col-md-12">
+    <ul class="breadcrumb">
+        <li><a href="{{config.SITE_HOMEPAGE}}">Trang chủ</a></li>
+        <li>
+            <a href="{% url 'content:user_single' object.pk %}">{{object.username}}</a>
+        </li>
+    </ul>
+</div>
+{% endblock breadcrumb %}
+
+
+{% block content_body %}
+
+<!-- Content Body -->
+
+
+
+                                
+</div>
+
+<!-- /Content Body -->
+{% endblock content_body %}

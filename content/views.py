@@ -9,6 +9,7 @@ from django.db.models import Q
 
 from . import models
 from .models import Post, PostCategory
+from django.contrib.auth.models import User
 from .forms import SearchForm
 
 
@@ -29,6 +30,11 @@ class PostSingle(DetailView):
     def get_queryset(self):
         return self.model.objects.filter(slug=self.kwargs['slug'])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['reverse_url'] = reverse('blog_single', kwargs={'slug': self.kwargs['slug']})
+        return context
+
 
 class CategoryDetail(DetailView):
     template_name= 'category_detail.html'
@@ -38,11 +44,22 @@ class CategoryDetail(DetailView):
 
 class CategoryDetailView(DetailView, MultipleObjectMixin):
     model=PostCategory
-    paginate_by = 20
-    template_name= 'category_detail.html'
+    paginate_by = 10
+    template_name= 'content/category_detail.html'
 
     def get_context_data(self, **kwargs):
-        object_list = self.object.emoji_list.all()
+        object_list = self.object.blog_posts.all()
         context = super(CategoryDetailView, self).get_context_data(object_list=object_list, **kwargs)
+        context['paginate'] = True
+        return context
+
+class UserDetailView(DetailView, MultipleObjectMixin):
+    model=User
+    paginate_by = 10
+    template_name= 'content/user_detail.html'
+
+    def get_context_data(self, **kwargs):
+        object_list = self.object.blog_posts.all()
+        context = super(UserDetailView, self).get_context_data(object_list=object_list, **kwargs)
         context['paginate'] = True
         return context

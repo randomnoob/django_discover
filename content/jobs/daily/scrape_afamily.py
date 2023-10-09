@@ -19,7 +19,10 @@ class Job(DailyJob):
         soup = BeautifulSoup(page.text, "lxml")
         title = soup.find('h1').text
         slug = slugify(title, allow_unicode=False)
-        thumbnail = soup.find("meta", attrs={"property":"og:image"}).get("content")
+        try:
+            thumbnail = soup.find("meta", attrs={"property":"og:image"}).get("content")
+        except:
+            thumbnail = "https://picsum.photos/500"
         content = str(soup.find(id='af-detail-content'))
         category = PostCategory.objects.first()
         try:

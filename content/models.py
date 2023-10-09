@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from ckeditor_uploader.fields import RichTextUploadingField
+from .utils import generate_excerpt
 
 STATUS = (
     (0,"Draft"),
     (1,"Publish")
 )
+
 
 def get_default_user():
     try:
@@ -73,6 +75,7 @@ class Post(models.Model):
     )
 
     content = models.TextField()
+    excerpt = models.TextField(default="")
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
@@ -85,5 +88,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-
+    
+    def save(self, *args, **kwargs):
+        self.excerpt = generate_excerpt(self.content)
+        super(Post, self).save(*args, **kwargs)

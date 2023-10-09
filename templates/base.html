@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" /> -->
     <link rel="icon" href="{{ MEDIA_URL }}{{ config.SITE_FAVICON }}" type="image/png" sizes="16x16">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,shrink-to-fit=no">
@@ -156,6 +156,9 @@
                                 </li> Website chúng tôi là web site cập nhật nội dung tự động từ google.com. Nội dung
                                 chỉ mang tính chất tham khảo
                             </ul>
+
+
+
                         </div>
 
                         <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
@@ -219,7 +222,18 @@
             </div>
         </div>
         <!-- Copyright End -->
+
+
+        <script type="application/ld+json">
+            {% include 'schema/website.markup' %}
+        </script>
+        <script type="application/ld+json">
+            {% include 'schema/organization.markup' %}
+        </script>
+
+
     </div>
+    
     <!-- Javascript Files -->
     <script src="{% static '/assets/base_js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static '/assets/base_js/popper.min.js' %}"></script>

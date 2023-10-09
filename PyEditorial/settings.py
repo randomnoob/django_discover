@@ -186,9 +186,12 @@ CONSTANCE_CONFIG = {
     'SITE_TITLE': ('Hoa Sen Plus', 'Website title'),
     'SITE_HOMEPAGE': ('http://minipc:8000', _('Domain of this site!'), str),
     'SITE_ADDRESS': ('6 Nguyễn Văn Tráng, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh, Vietnam', _('Address of this site!'), str),
+    'SITE_CITY': ('Thành phố Hồ Chí Minh', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
     'SITE_FAVICON': ('default_favicon.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO': ('http://minipc:8000/logo.png', _('Favicon of this site!'), 'image_field'),
     'SITE_FEED_URL': ('feed', _('Feed URL of the site!'), str),
+    'SITE_SOCIAL_USERNAME': ('hoasenplus', _('Social usernames of the site!'), str),
 
     'GET_IN_TOUCH_ACTIVE': ('yes', _('"Get in touch" section is active?'), 'yes_no_select'),
     'GET_IN_TOUCH_INFO': ('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', _('"Get in touch" information text'), str),

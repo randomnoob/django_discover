@@ -1,0 +1,69 @@
+{% extends 'content/sidebar-layout.html' %}
+
+{% block head_tag %}
+<title>{{ object.title }}</title>
+<meta name="description" content="{{ object.title }}">
+<link rel='canonical' href="{% url 'content:category_single' object.slug %}" />
+<link rel='amphtml' href="{% url 'content:category_single' object.slug %}/amp" />
+{% endblock %}
+
+
+{% block breadcrumb %}
+<div class="col-md-12">
+    <ul class="breadcrumb">
+        <li><a href="{{config.SITE_HOMEPAGE}}">Trang chủ</a></li>
+        <li>
+            <a href="{% url 'content:category_single' object.slug %}">{{object.title}}</a>
+        </li>
+    </ul>
+</div>
+{% endblock breadcrumb %}
+
+
+{% block content_body %}
+
+<!-- Content Body -->
+
+
+<div class="block category-listing category-style2">
+    <div class="utf_block_title"><span>{{object.title}}</span></div>
+            
+            {% for blog_post in object_list %}
+            <div class="utf_post_block_style post-list clearfix">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="utf_post_thumb thumb-float-style">
+                            <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                <img class="img-fluid img-cover" data-original="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}" alt="{{ blog_post.title }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="utf_post_content">
+                            <h3 class="utf_post_title title-large">
+                                <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                            </h3>
+                            <div class="utf_post_meta">
+                                <span class="utf_post_date">
+                                    <i class="fa fa-clock-o"></i>
+                                    {{blog_post.created_on|date:"d/m/y}}
+                                </span>
+                            </div>
+                            <div class="excerpt">
+                                {{ blog_post.excerpt }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+
+            {% if page_obj %}
+            {% include 'content/pagination.html' %}
+            {% endif %}
+
+                                
+</div>
+
+<!-- /Content Body -->
+{% endblock content_body %}
