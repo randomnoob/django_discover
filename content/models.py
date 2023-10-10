@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse
 
 from ckeditor_uploader.fields import RichTextUploadingField
-from .utils import generate_excerpt
+from .utils import generate_excerpt, insert_internal_links
 
 STATUS = (
     (0,"Draft"),
@@ -93,3 +94,24 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         self.excerpt = generate_excerpt(self.content)
         super(Post, self).save(*args, **kwargs)
+
+    def find_adjacent_posts(self):
+        posts = Post.objects.filter(pk__lt=self.pk).order_by("-created_on")[:4]
+        return posts
+    
+    def internal_seoified(self, amp=False):
+        "Insert internal links into post content"
+        linklist = []
+        adjacent_posts = self.find_adjacent_posts()
+        for p in adjacent_posts:
+            url = f"/{p.slug}"
+            title = p.title
+            linklist.append([url, title])
+        if amp:
+            html = insert_internal_links(self.amp_content, linklist)
+        else:
+            html = insert_internal_links(self.content, linklist)
+        return html
+    
+    def internal_seoified_amp(self, amp=False):
+        return self.internal_seoified(amp=True)

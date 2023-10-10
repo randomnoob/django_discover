@@ -37,7 +37,7 @@
                     <div class="utf_post_content-area">
                         <div class="entry-content">
                             {% block inner_content %}
-                            {{ object.content | safe }}
+                            {{ object.internal_seoified | safe }}
                             {% endblock inner_content %}
                         </div>
                     </div>
