@@ -188,7 +188,7 @@ CONSTANCE_CONFIG = {
     'SITE_ADDRESS': ('6 Nguyễn Văn Tráng, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh, Vietnam', _('Address of this site!'), str),
     'SITE_CITY': ('Thành phố Hồ Chí Minh', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
-    'SITE_FAVICON': ('default_favicon.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_FAVICON': ('/assets/images/hoasenplus.png', _('Favicon of this site!'), 'image_field'),
     'SITE_LOGO': ('http://minipc:8000/logo.png', _('Favicon of this site!'), 'image_field'),
     'SITE_FEED_URL': ('feed', _('Feed URL of the site!'), str),
     'SITE_SOCIAL_USERNAME': ('hoasenplus', _('Social usernames of the site!'), str),
@@ -244,17 +244,17 @@ LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'content:index'
 
 SCRAPE_LIST = {
-    'Dạy con': 'https://afamily.vn/timeline-type/245/homev2/trang-1.chn',
-    'Chuyện gia đình': 'https://afamily.vn/timeline-type/156/homev2/trang-1.chn',
-    'Chuyện yêu': 'https://afamily.vn/timeline-type/188/homev2/trang-1.chn',
-    'Hẹn hò': 'https://afamily.vn/timeline-type/155/homev2/trang-1.chn',
-    'Sống khỏe': 'https://afamily.vn/timeline-type/185/homev2/trang-1.chn',
-    'Tư vấn tình dục': 'https://afamily.vn/timeline-tag/suc-khoe/tu-van-tinh-duc/trang-1.chn',
-    'Ngắm': 'https://afamily.vn/timeline-type/184/homev2/trang-1.chn',
-    'Chi tiêu': 'https://afamily.vn/timeline-type/237/homev2/trang-1.chn',
-    'Vào bếp': 'https://afamily.vn/timeline-type/54/homev2/trang-1.chn',
-    'Mẹo vặt gia đình': 'https://afamily.vn/timeline-type/248/homev2/trang-1.chn',
-    'Tâm sự': 'https://afamily.vn/timeline-type/37/homev2/trang-1.chn',
+    'Dạy con': 'https://afamily.vn/timeline-type/245/homev2/trang-{pagenum}.chn',
+    'Chuyện gia đình': 'https://afamily.vn/timeline-type/156/homev2/trang-{pagenum}.chn',
+    'Chuyện yêu': 'https://afamily.vn/timeline-type/188/homev2/trang-{pagenum}.chn',
+    'Hẹn hò': 'https://afamily.vn/timeline-type/155/homev2/trang-{pagenum}.chn',
+    'Sống khỏe': 'https://afamily.vn/timeline-type/185/homev2/trang-{pagenum}.chn',
+    'Tư vấn tình dục': 'https://afamily.vn/timeline-tag/suc-khoe/tu-van-tinh-duc/trang-{pagenum}.chn',
+    'Ngắm': 'https://afamily.vn/timeline-type/184/homev2/trang-{pagenum}.chn',
+    'Chi tiêu': 'https://afamily.vn/timeline-type/237/homev2/trang-{pagenum}.chn',
+    'Vào bếp': 'https://afamily.vn/timeline-type/54/homev2/trang-{pagenum}.chn',
+    'Mẹo vặt gia đình': 'https://afamily.vn/timeline-type/248/homev2/trang-{pagenum}.chn',
+    'Tâm sự': 'https://afamily.vn/timeline-type/37/homev2/trang-{pagenum}.chn',
  }
 
 
