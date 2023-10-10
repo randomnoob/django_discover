@@ -92,8 +92,9 @@ class Post(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        self.excerpt = generate_excerpt(self.content)
-        super(Post, self).save(*args, **kwargs)
+        if not self.excerpt:
+            self.excerpt = generate_excerpt(self.content)
+            super(Post, self).save(*args, **kwargs)
 
     def find_adjacent_posts(self):
         posts = Post.objects.filter(pk__lt=self.pk).order_by("-created_on")[:4]
