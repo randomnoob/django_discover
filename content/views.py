@@ -35,6 +35,9 @@ class PostSingle(DetailView):
         # context['reverse_url'] = reverse('blog_single', kwargs={'slug': self.kwargs['slug']})
         return context
 
+class PostSingleAMP(PostSingle):
+    template_name = 'content/amp-post.html'
+
 
 class CategoryDetail(DetailView):
     template_name= 'category_detail.html'

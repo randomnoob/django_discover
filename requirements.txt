@@ -1,13 +1,15 @@
 -i https://pypi.org/simple
+amp-tools==0.0.4
 asgiref==3.3.1
 asttokens==2.4.0
 backcall==0.2.0
 beautifulsoup4==4.12.2; python_version >= '3.6'
 bs4==0.0.1
 certifi==2023.7.22; python_version >= '3.6'
-charset-normalizer==3.3.0; python_full_version >= '3.7.0'
+charset-normalizer==3.3.0; python_version >= '3.7'
 decorator==5.1.1; python_version >= '3.5'
 django==3.1.14
+django-canonical-amp==0.1b1
 django-ckeditor==6.0.0
 django-constance==2.8.0
 django-extensions==3.1.5
@@ -24,11 +26,11 @@ parso==0.8.3; python_version >= '3.6'
 pexpect==4.8.0; sys_platform != 'win32'
 pickleshare==0.7.5
 pillow==9.3.0
-prompt-toolkit==3.0.39; python_full_version >= '3.7.0'
+prompt-toolkit==3.0.39; python_version >= '3.7'
 psycopg2-binary==2.9.9
 ptyprocess==0.7.0
 pure-eval==0.2.2
-pygments==2.16.1; python_full_version >= '3.7.0'
+pygments==2.16.1; python_version >= '3.7'
 python-memcached==1.59
 pytz==2020.4
 requests==2.31.0
@@ -38,5 +40,6 @@ sqlparse==0.4.4
 stack-data==0.6.3
 traitlets==5.11.2; python_version >= '3.8'
 typing-extensions==4.8.0; python_version < '3.10'
-urllib3==2.0.6; python_full_version >= '3.7.0'
+urllib3==2.0.6; python_version >= '3.7'
+validators==0.22.0; python_version >= '3.8'
 wcwidth==0.2.8

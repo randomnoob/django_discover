@@ -2,15 +2,19 @@
 {% load i18n %}
 {% get_media_prefix as MEDIA_URL %}
 <!DOCTYPE html>
+{% block amp_html_tag %}
 <html lang="vi">
+{% endblock %}
 
 <head>
+    <meta charset="utf-8" />
+    {% block foremost_head_tag %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% endblock %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="author" content="">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <!-- <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" /> -->
-    <link rel="icon" href="{{ MEDIA_URL }}{{ config.SITE_FAVICON }}" type="image/png" sizes="16x16">
+    <link rel="icon" href="{{ config.SITE_FAVICON }}" type="image/png" sizes="16x16">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,shrink-to-fit=no">
 
@@ -20,7 +24,7 @@
     <link rel='canonical' href="{{ config.SITE_HOMEPAGE }}" />
     <link rel='amphtml' href="{{ config.SITE_HOMEPAGE }}/amp" />
     {% endblock %}
-    <link rel="alternate" type="application/rss+xml" title="{{ config.SITE_TITLE }}" href="{{ config.SITE_FEED_URL }}" />
+    <!-- <link rel="alternate" type="application/rss+xml" title="{{ config.SITE_TITLE }}" href="{{ config.SITE_FEED_URL }}" /> -->
     <meta name="robots" content="index, follow" />
 
 
@@ -167,7 +171,7 @@
                                 {% for category in blog_categories %}
                                 <li>
                                     <i class="fa fa-angle-double-right"></i>
-                                    <a href="/{{ category.slug }}">
+                                    <a href="{% url 'content:category_single' category.slug %}">
                                         <span class="catTitle">{{ category.title }}</span>
                                     </a>
                                 </li>

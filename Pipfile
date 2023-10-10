@@ -21,6 +21,8 @@ django-extensions = "*"
 requests = "*"
 bs4 = "*"
 lxml = "*"
+django-canonical-amp = "*"
+amp-tools = "*"
 
 [dev-packages]
 

@@ -12,3 +12,12 @@ def generate_excerpt(html):
     except:
         return ""
     
+
+def remove_all_links(soup):
+    try:
+        hrefs = soup.find_all("a")
+        for href in hrefs:
+            href.replace_with(href.get_text().strip())
+    except:
+        pass
+    return str(soup)

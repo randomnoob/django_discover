@@ -7,6 +7,8 @@ from django_extensions.management.jobs import DailyJob
 from django.utils.text import slugify
 from django.db.utils import IntegrityError
 from content.models import Post, PostCategory
+from content.utils import remove_all_links
+from amp_tools import TransformHtmlToAmp
 from bs4 import BeautifulSoup
 import requests
 
@@ -27,10 +29,17 @@ class Job(DailyJob):
                 thumbnail = ""
         except:
             thumbnail = ""
-        content = str(soup.find(id='af-detail-content'))
+        content = soup.find(id='af-detail-content')
+        content = remove_all_links(content) #output stringified soup
+        try:
+            amp_content = TransformHtmlToAmp(content)().decode()
+        except:
+            amp_content = content
         category = PostCategory.objects.get(title=category_name)
         try:
-            post = Post.objects.create(title=title, slug=slug, thumbnail=thumbnail, content=content, category=category)
+            post = Post.objects.create(title=title, slug=slug, thumbnail=thumbnail,
+                                       content=content, amp_content=amp_content,
+                                       category=category)
             post.save()
             print(f"      Done Scraping {url}")
         except IntegrityError:

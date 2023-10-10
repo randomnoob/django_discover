@@ -3,8 +3,11 @@
 {% block head_tag %}
 <title>{{ object.title }}</title>
 <meta name="description" content="{{ object.content|truncatechars:300 }}">
-<link rel='canonical' href="{% url 'content:blog_single' object.slug %}" />
-<link rel='amphtml' href="{% url 'content:blog_single' object.slug %}/amp" />
+<link rel='canonical' href="{{config.SITE_HOMEPAGE}}{% url 'content:blog_single' object.slug %}" />
+<link rel='amphtml' href="{{config.SITE_HOMEPAGE}}{% url 'content:blog_single_amp' object.slug %}" />
+
+
+{% include 'content/head-oginfo.html'%}
 {% endblock %}
 
 
@@ -33,8 +36,9 @@
                     </div>
                     <div class="utf_post_content-area">
                         <div class="entry-content">
+                            {% block inner_content %}
                             {{ object.content | safe }}
-
+                            {% endblock inner_content %}
                         </div>
                     </div>
                 </div>

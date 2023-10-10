@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'content.apps.ContentConfig',
+    'amp',
     # 'content',
 ]
 
@@ -62,7 +63,8 @@ ROOT_URLCONF = 'PyEditorial.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'amp.template.backends.amp.AmpTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -188,7 +190,7 @@ CONSTANCE_CONFIG = {
     'SITE_ADDRESS': ('6 Nguyễn Văn Tráng, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh, Vietnam', _('Address of this site!'), str),
     'SITE_CITY': ('Thành phố Hồ Chí Minh', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
-    'SITE_FAVICON': ('/assets/images/hoasenplus.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_FAVICON': ('static/images/hoasenplus.png', _('Favicon of this site!'), 'image_field'),
     'SITE_LOGO': ('http://minipc:8000/logo.png', _('Favicon of this site!'), 'image_field'),
     'SITE_FEED_URL': ('feed', _('Feed URL of the site!'), str),
     'SITE_SOCIAL_USERNAME': ('hoasenplus', _('Social usernames of the site!'), str),

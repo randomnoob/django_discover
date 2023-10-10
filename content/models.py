@@ -75,6 +75,7 @@ class Post(models.Model):
     )
 
     content = models.TextField()
+    amp_content = models.TextField(default="")
     excerpt = models.TextField(default="")
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)

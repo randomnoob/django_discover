@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7293961052151856727928e255724d59691405ad68af17d2b6bcb5732631acc7"
+            "sha256": "f050fa09cf4eb1f38c692b763f852b41b7e031485cd455c79022bf5dc4b678a7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,14 @@
         ]
     },
     "default": {
+        "amp-tools": {
+            "hashes": [
+                "sha256:2538a2d54b17f8d05948121f758ad92c20822183876d446ccd3b9804f141287d",
+                "sha256:bee62f5efb4379d603a390e87735780869ebb0f3df46f1621c49f7e3e32f5896"
+            ],
+            "index": "pypi",
+            "version": "==0.0.4"
+        },
         "asgiref": {
             "hashes": [
                 "sha256:5ee950735509d04eb673bd7f7120f8fa1c9e2df495394992c73234d526907e17",
@@ -154,7 +162,7 @@
                 "sha256:f8888e31e3a85943743f8fc15e71536bda1c81d5aa36d014a3c0c44481d7db6e",
                 "sha256:fc52b79d83a3fe3a360902d3f5d79073a993597d48114c29485e9431092905d8"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==3.3.0"
         },
         "decorator": {
@@ -172,6 +180,13 @@
             ],
             "index": "pypi",
             "version": "==3.1.14"
+        },
+        "django-canonical-amp": {
+            "hashes": [
+                "sha256:947c546477b9915c889432db1b95d3f1f8f494d35fb1b075c7fd442de9f3aac2"
+            ],
+            "index": "pypi",
+            "version": "==0.1b1"
         },
         "django-ckeditor": {
             "hashes": [
@@ -453,7 +468,7 @@
                 "sha256:04505ade687dc26dc4284b1ad19a83be2f2afe83e7a828ace0c72f3a1df72aac",
                 "sha256:9dffbe1d8acf91e3de75f3b544e4842382fc06c6babe903ac9acb74dc6e08d88"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==3.0.39"
         },
         "psycopg2-binary": {
@@ -550,7 +565,7 @@
                 "sha256:13fc09fa63bc8d8671a6d247e1eb303c4b343eaee81d861f3404db2935653692",
                 "sha256:1daff0494820c69bc8941e407aa20f577374ee88364ee10a98fdbe0aece96e29"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==2.16.1"
         },
         "python-memcached": {
@@ -629,8 +644,16 @@
                 "sha256:7a7c7003b000adf9e7ca2a377c9688bbc54ed41b985789ed576570342a375cd2",
                 "sha256:b19e1a85d206b56d7df1d5e683df4a7725252a964e3993648dd0fb5a1c157564"
             ],
-            "markers": "python_full_version >= '3.7.0'",
+            "markers": "python_version >= '3.7'",
             "version": "==2.0.6"
+        },
+        "validators": {
+            "hashes": [
+                "sha256:61cf7d4a62bbae559f2e54aed3b000cea9ff3e2fdbe463f51179b92c58c9585a",
+                "sha256:77b2689b172eeeb600d9605ab86194641670cdb73b60afd577142a9397873370"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==0.22.0"
         },
         "wcwidth": {
             "hashes": [
