@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.cache import caches
 
-from django_extensions.management.jobs import DailyJob
+from django_extensions.management.jobs import HourlyJob
 
 
 from django.utils.text import slugify
@@ -14,7 +14,7 @@ import requests
 
 from PyEditorial.settings import SCRAPE_LIST
 
-class Job(DailyJob):
+class Job(HourlyJob):
     help = "Scrape from afamily.vn category Nau An https://afamily.vn/an-ngon.chn"
 
     def parse_post(self, url, category_name, *args, **kwargs):

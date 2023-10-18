@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.cache import caches
 
-from django_extensions.management.jobs import DailyJob
+from django_extensions.management.jobs import HourlyJob
 
 from django.db.utils import IntegrityError
 from content.models import Post, PostCategory
@@ -21,7 +21,7 @@ BAOMOI = {
     'Vào bếp': "https://baomoi.com/am-thuc.epi",
 }
 
-class Job(DailyJob):
+class Job(HourlyJob):
     help = "Scrape from baomoi.com"
 
     def parse_post(self, url, category_name, *args, **kwargs):
