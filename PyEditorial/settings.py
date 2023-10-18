@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'PyEditorial.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_discover',
+        'NAME': 'dj_discover',
         'USER': 'nl',
         'PASSWORD': 'mangto535',
         'HOST': 'localhost',

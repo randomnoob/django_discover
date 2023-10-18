@@ -72,6 +72,7 @@
                             <!-- start featured blog -->
                             {% with blog_posts=category.blog_posts.all|slice:":5" %}
                             <div class="row">
+                                {% if blog_posts %}
                                 {% with blog_post=blog_posts.0 %}
                                 <div class="col-lg-6 col-md-6">
                                     <div class="utf_post_block_style clearfix">
@@ -131,7 +132,8 @@
                                         </ul>
                                     </div>
                                 </div>
-
+                                {% endif %} 
+                                
                             {% endwith %} 
                             <!-- ends featured blog -->
                             
@@ -144,12 +146,13 @@
 
                     {% with category_list=blog_categories|slice:"1:" %}
                     {% for category in category_list %}
+                    {% with blogs=category.blog_posts.all|slice:":5" %}
+                    {% if blogs %}
                     <div class="col-lg-6">
                         <div class="block {% cycle 'color-dark-blue' 'color-violet' 'color-red' 'color-blue' 'color-orange'  'color-aqua'%}">
                             <h2 class="utf_block_title"><span>{{ category.title }}</span></h2>
                             <div class="utf_list_post_block">
                                 <ul class="utf_list_post">
-                                    {% with blogs=category.blog_posts.all|slice:":5" %}
                                     {% for blog_post in blogs %}
                                     <li class="clearfix">
                                         <div class="utf_post_block_style post-float clearfix">
@@ -176,12 +179,13 @@
                                         </div>
                                     </li>
                                     {% endfor %}
-                                    {% endwith %}
                                 </ul>
                             </div>
                         </div>
                         <div class="gap-30"></div>
                     </div>
+                    {% endif %}
+                    {% endwith %}
                     {% endfor %}
                     {% endwith %}
 

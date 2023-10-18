@@ -3,14 +3,14 @@ from django.core.cache import caches
 
 from django_extensions.management.jobs import DailyJob
 
-
-from django.utils.text import slugify
 from django.db.utils import IntegrityError
 from content.models import Post, PostCategory
-from content.utils import remove_all_links
+from django.urls import reverse
+from content.utils import remove_all_links, slugify
 from amp_tools import TransformHtmlToAmp
 from bs4 import BeautifulSoup
 import requests
+import traceback
 
 BAOMOI = {
     'Ngắm': "https://baomoi.com/kham-pha-viet-nam-top335.epi",
@@ -29,7 +29,7 @@ class Job(DailyJob):
         page = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/111.0.0.0 Safari/537.36'})
         soup = BeautifulSoup(page.text, "lxml")
         title = soup.find('h1').text
-        slug = slugify(title, allow_unicode=False)
+        slug = slugify(title)
         try:
             thumbnail = soup.find("meta", attrs={"property":"og:image"}).get("content")
             if "base64" in thumbnail:
@@ -38,26 +38,31 @@ class Job(DailyJob):
             thumbnail = ""
 
         mainelement = soup.find('h1').parent
-        excerpt = mainelement.find('h3')
+        excerpt = soup.find("meta", attrs={"name": "description"})
+        excerpt = excerpt['content']
+        excerpt_h3 = mainelement.find("h3")
+        remaining_content = excerpt_h3.next_sibling
         try:
-            content_detector = soup.find(lambda tag:tag.name=="div" and tag.get('class') and "body-image" in tag.get('class'))
-            content = content_detector.parent
+            new_tag = soup.new_tag("div", class_="combined-content")
+            new_tag.append(excerpt_h3)
+            new_tag.append(remaining_content)
         except:
             print(f"      ++Error URL: {url}")
-            return False
+            traceback.print_exc()
         
-        content = remove_all_links(content) #output stringified soup
+        content = remove_all_links(new_tag) #output stringified soup
         try:
             amp_content = TransformHtmlToAmp(content)().decode()
         except:
             amp_content = content
         category = PostCategory.objects.get(title=category_name)
         try:
-            post = Post.objects.create(title=title, slug=slug, thumbnail=thumbnail,
-                                       content=content, amp_content=amp_content,
-                                       excerpt=excerpt, category=category)
-            post.save()
+            the_post = Post.objects.create(title=title, slug=slug, thumbnail=thumbnail,
+                                        content=content, amp_content=amp_content,
+                                        excerpt=excerpt, category=category)
+            the_post.save()
             print(f"      Done Scraping {url}")
+            print(f"      Post title {title}")
         except IntegrityError:
             print(f"      ++Duplicated URL")
             pass
@@ -67,8 +72,9 @@ class Job(DailyJob):
     def parse_pagination(self, url):
         index_page = requests.get(url, headers={'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/111.0.0.0 Safari/537.36'})
         index_soup = BeautifulSoup(index_page.text, "lxml")
-        subpage_urls = index_soup.find_all("a", attrs={'title': True})
-        subpage_urls = [x['href'] for x in subpage_urls if x['title']]
+        # subpage_urls = index_soup.find_all("a", attrs={'title': True})
+        subpage_urls = index_soup.find_all("h3")
+        subpage_urls = [x.find("a")['href'] for x in subpage_urls]
         subpage_urls = list(set(subpage_urls))
         return subpage_urls
 
@@ -79,5 +85,9 @@ class Job(DailyJob):
             print(f"    Post URLs list contains {len(post_urls)} URLs")
             for url in post_urls:
                     url = "https://baomoi.com"+url
-                    self.parse_post(url, category_name=cate_name)
+                    try:
+                        self.parse_post(url, category_name=cate_name)
+                    except:
+                        pass
+        # self.parse_post("https://baomoi.com/quang-binh-kho-quyet-toan-du-an-phat-trien-moi-truong-ha-tang-do-thi-c47246598.epi", category_name="Ngắm")
         return

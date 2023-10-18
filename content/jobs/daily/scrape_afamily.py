@@ -7,6 +7,7 @@ from django_extensions.management.jobs import DailyJob
 from django.utils.text import slugify
 from django.db.utils import IntegrityError
 from content.models import Post, PostCategory
+from content.utils import remove_all_links, slugify
 from bs4 import BeautifulSoup
 import requests
 

@@ -89,10 +89,11 @@ class Post(models.Model):
         return ', '.join([cat.title for cat in self.category.all()])
 
     def __str__(self):
-        return self.title
+        # return self.title
+        return f"PK {self.pk} slug {self.slug}"
     
     def save(self, *args, **kwargs):
-        if not self.excerpt:
+        if "excerpt" not in kwargs or not self.excerpt:
             self.excerpt = generate_excerpt(self.content)
             super(Post, self).save(*args, **kwargs)
 

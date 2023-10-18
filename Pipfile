@@ -23,6 +23,7 @@ bs4 = "*"
 lxml = "*"
 django-canonical-amp = "*"
 amp-tools = "*"
+unidecode = "*"
 
 [dev-packages]
 

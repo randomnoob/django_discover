@@ -51,7 +51,7 @@ class CategoryDetailView(DetailView, MultipleObjectMixin):
     template_name= 'content/category_detail.html'
 
     def get_context_data(self, **kwargs):
-        object_list = self.object.blog_posts.all()
+        object_list = self.object.blog_posts.all().order_by('-pk')
         context = super(CategoryDetailView, self).get_context_data(object_list=object_list, **kwargs)
         context['paginate'] = True
         return context
@@ -62,7 +62,7 @@ class UserDetailView(DetailView, MultipleObjectMixin):
     template_name= 'content/user_detail.html'
 
     def get_context_data(self, **kwargs):
-        object_list = self.object.blog_posts.all()
+        object_list = self.object.blog_posts.all().order_by('-pk')
         context = super(UserDetailView, self).get_context_data(object_list=object_list, **kwargs)
         context['paginate'] = True
         return context
