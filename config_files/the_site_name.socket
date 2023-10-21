@@ -1,0 +1,9 @@
+# Location: /etc/systemd/system/the_site_name.socket
+[Unit]
+Description=the_site_name gunicorn socket
+
+[Socket]
+ListenStream=/run/the_site_name.sock
+
+[Install]
+WantedBy=sockets.target

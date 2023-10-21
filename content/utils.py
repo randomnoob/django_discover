@@ -50,7 +50,7 @@ def insert_internal_links(html, linklist):
         html_split = [x+"</p>" for x in re.split("</p>", html)]
         # Insert after first paragraph and before last one
         try:
-            _build_internal_links(linklist[0], html_split, 1)
+            _build_internal_links(linklist[0], html_split, 3)
             if len(html) <= 6000:
                 _build_internal_links(linklist[1], html_split, -3)
             else:

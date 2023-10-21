@@ -1,0 +1,23 @@
+# Location: /etc/systemd/system/the_site_name.service
+[Unit]
+Description=the_site_name gunicorn daemon
+Requires=the_site_name.socket
+After=network.target
+
+[Service]
+User=nl
+Group=nl
+WorkingDirectory=/home/nl/django_projects/the_site_name/
+ExecStart=/home/nl/.local/share/virtualenvs/the_site_name-FibxkKQ1/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/the_site_name.sock \
+          PyEditorial.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+
+[Install]
+WantedBy=multi-user.target
