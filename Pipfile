@@ -24,6 +24,7 @@ lxml = "*"
 django-canonical-amp = "*"
 amp-tools = "*"
 unidecode = "*"
+html2text = "*"
 
 [dev-packages]
 

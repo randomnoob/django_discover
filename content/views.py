@@ -7,10 +7,12 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView, MultipleObjectMixin
 from django.db.models import Q
 
-from . import models
-from .models import Post, PostCategory
+from content.models import Post, PostCategory, get_default_user
+from content.utils import textify
+from constance import config
 from django.contrib.auth.models import User
-from .forms import SearchForm
+
+from django.contrib.syndication.views import Feed
 
 
 class Index(View):
@@ -18,13 +20,13 @@ class Index(View):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'last_blog': models.Post.objects.order_by('-pk').filter(status=0)[:1],
-            'blogs': models.Post.objects.order_by('-pk').filter(status=0)[1:15],
+            'last_blog': Post.objects.order_by('-pk').filter(status=0)[:1],
+            'blogs': Post.objects.order_by('-pk').filter(status=0)[1:15],
         }
         return render(request, self.template_name, context)
 
 class PostSingle(DetailView):
-    model = models.Post
+    model = Post
     template_name = 'content/post.html'
 
     def get_queryset(self):
@@ -66,3 +68,67 @@ class UserDetailView(DetailView, MultipleObjectMixin):
         context = super(UserDetailView, self).get_context_data(object_list=object_list, **kwargs)
         context['paginate'] = True
         return context
+    
+
+# =========Begin RSS Feed Views=========
+
+class PostsByCategory(Feed):
+    author_name = get_default_user().username
+
+    def get_object(self, request, category_slug):
+        return PostCategory.objects.get(slug=category_slug)
+
+    def title(self, obj):
+        return "Bài viết mới nhất trong chuyên mục: %s" % obj.title
+
+    def link(self, obj):
+        return obj.get_absolute_url()
+
+    def description(self, obj):
+        return obj.title
+
+    def items(self, obj):
+        return Post.objects.filter(category=obj).order_by("-pk")[:100]
+    
+    def item_title(self, item):
+        # Tra ve title cho tung post
+        return item.title
+    def item_description(self, item):
+        # Tra ve desc cho tung post
+        if len(item.excerpt) >= 50:
+            return item.excerpt
+        else:
+            return textify(item.content)[:100]
+    def item_pubdate(self, item):
+        """
+        Takes an item, as returned by items(), and returns the item's
+        pubdate.
+        """
+        return item.created_on
+
+class AllPostFeed(Feed):
+    title = f"Bài viết mới nhất trên {config.SITE_TITLE}"
+    author_name = get_default_user().username
+    link = "/feed/"
+
+    def description(self, obj):
+        return f"Mới nhất trên {config.SITE_TITLE}"
+
+    def items(self):
+        return Post.objects.order_by("-created_on")[:50]
+    def item_title(self, item):
+        # Tra ve title cho tung post
+        return item.title
+    def item_description(self, item):
+        # Tra ve desc cho tung post
+        if len(item.excerpt) >= 50:
+            return item.excerpt
+        else:
+            return textify(item.content)[:100]
+    def item_pubdate(self, item):
+        """
+        Takes an item, as returned by items(), and returns the item's
+        pubdate.
+        """
+        return item.created_on
+# =========End RSS Feed Views=========

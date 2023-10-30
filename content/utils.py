@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import re
-import itertools
+import html2text
 import traceback
 from unidecode import unidecode
 from django.template import defaultfilters
@@ -74,3 +74,12 @@ def _build_internal_links(linklist_element, html_split, index):
     code = '<p>Xem thêm: <a href="{}">{}</a><p>'.format(*linklist_element)
     html_split.insert(index, code)
 
+def textify(html):
+    try:
+        h = html2text.HTML2Text()
+
+        # Don't Ignore links, they are useful inside emails
+        h.ignore_links = True
+        return h.handle(html)
+    except:
+        return html

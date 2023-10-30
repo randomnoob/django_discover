@@ -6,6 +6,7 @@
 <meta name="description" content="{{ object.title }}">
 <link rel='canonical' href="{% url 'content:category_single' object.slug %}" />
 <link rel='amphtml' href="{% url 'content:category_single' object.slug %}/amp" />
+<link rel="alternate" type="application/rss+xml" title="Dòng thông tin chuyên mục {{object.title}}" href="{{config.SITE_HOMEPAGE}}{% url 'content:feed_by_category' object.slug %}">
 {% endblock %}
 
 

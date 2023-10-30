@@ -188,12 +188,12 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 
 CONSTANCE_CONFIG = {
     'SITE_TITLE': ('Hoa Sen Plus', 'Website title'),
-    'SITE_HOMEPAGE': ('http://minipc:8000', _('Domain of this site!'), str),
+    'SITE_HOMEPAGE': ('http://minipc.com:8000', _('Domain of this site!'), str),
     'SITE_ADDRESS': ('6 Nguyễn Văn Tráng, Phường Phạm Ngũ Lão, Quận 1, Thành phố Hồ Chí Minh, Vietnam', _('Address of this site!'), str),
     'SITE_CITY': ('Thành phố Hồ Chí Minh', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
     'SITE_FAVICON': ('static/images/hoasenplus.png', _('Favicon of this site!'), 'image_field'),
-    'SITE_LOGO': ('http://minipc:8000/logo.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO': ('http://minipc.com:8000/logo.png', _('Favicon of this site!'), 'image_field'),
     'SITE_FEED_URL': ('feed', _('Feed URL of the site!'), str),
     'SITE_SOCIAL_USERNAME': ('hoasenplus', _('Social usernames of the site!'), str),
 

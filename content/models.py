@@ -41,7 +41,8 @@ class PostCategory(models.Model):
 
     def __str__(self):
         return self.title
-
+    def get_absolute_url(self):
+        return f"/{self.slug}/"
 
 class Post(models.Model):
     title = models.CharField(
@@ -84,13 +85,17 @@ class Post(models.Model):
     class Meta:
         verbose_name = _('Post')
         verbose_name_plural = _('Posts')
+        ordering = ["-created_on"]
 
     def display_category(self):
         return ', '.join([cat.title for cat in self.category.all()])
 
     def __str__(self):
         # return self.title
-        return f"PK {self.pk} slug {self.slug}"
+        return f"{self.pk} slug {self.slug}"
+    
+    def get_absolute_url(self):
+        return f"/{self.slug}"
     
     def save(self, *args, **kwargs):
         if "excerpt" not in kwargs or not self.excerpt:
