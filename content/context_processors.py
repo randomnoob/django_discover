@@ -1,7 +1,7 @@
 from . import models
 from constance import config
 
-latest_posts = models.Post.objects.order_by('-pk').filter(status=0)[1:20]
+latest_posts = models.Post.objects.order_by('-pk').filter(status=0)[:20]
 
 def show_system_content(request):
     return {

@@ -2,6 +2,14 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from . import views
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import PostSitemap, StaticSitemap
+
+
+sitemaps = {
+    'blog': PostSitemap,
+    'static': StaticSitemap,
+}
 
 flatpages = [
     path("about", TemplateView.as_view(template_name="flatpages/about.html"), name="about"),
@@ -22,4 +30,5 @@ urlpatterns = flatpages + [
     path('<slug:slug>/amp', views.PostSingleAMP.as_view(), name='blog_single_amp'),
     path('user/<int:pk>/', views.UserDetailView.as_view(), name='user_single'),
     path('<slug:category_slug>/feed/', views.PostsByCategory(), name='feed_by_category'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]

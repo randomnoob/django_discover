@@ -25,6 +25,8 @@ django-canonical-amp = "*"
 amp-tools = "*"
 unidecode = "*"
 html2text = "*"
+goose3 = "*"
+markdown = "*"
 
 [dev-packages]
 

@@ -17,6 +17,10 @@
         <li>
             <a href="{% url 'content:category_single' object.slug %}">{{object.title}}</a>
         </li>
+        &nbsp;
+        <a title="rss" href="{% url 'content:feed_by_category' object.slug %}">
+            <span class="social-icon"><i class="fa fa-rss"></i></span>
+        </a>
     </ul>
 </div>
 {% endblock breadcrumb %}
@@ -28,7 +32,15 @@
 
 
 <div class="block category-listing category-style2">
-    <div class="utf_block_title"><span>{{object.title}}</span></div>
+    <div class="utf_block_title">
+        <span>
+            <a href="{% url 'content:category_single' object.slug %}" style="color: #fff;">{{object.title}}</a>
+            &nbsp;
+            <a title="rss" style="color: #fff;" href="{% url 'content:feed_by_category' object.slug %}">
+                <span class="social-icon"><i class="fa fa-rss"></i></span>
+            </a>
+        </span>
+    </div>
             
             {% for blog_post in object_list %}
             <div class="utf_post_block_style post-list clearfix">
@@ -49,6 +61,8 @@
                             <h3 class="utf_post_title title-large">
                                 <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
                             </h3>
+
+                            
                             <div class="utf_post_meta">
                                 <span class="utf_post_date">
                                     <i class="fa fa-clock-o"></i>

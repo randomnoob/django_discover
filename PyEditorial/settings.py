@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'content.apps.ContentConfig',
     'amp',
+    "django.contrib.sitemaps",
     # 'content',
 ]
 
@@ -210,7 +211,7 @@ CONSTANCE_CONFIG = {
     'SOCIAL_NETWORKS_MEDIUM_URL': ('#', _('Social Networks - Medium'), str),
     'SOCIAL_NETWORKS_TELEGRAM_URL': ('#', _('Social Networks - Telegram'), str),
     'SOCIAL_NETWORKS_GITHUB_URL': ('#', _('Social Networks - Github'), str),
-    'SOCIAL_NETWORKS_GITLAB_URL': ('#', _('Social Networks - Gitlab'), str),
+    'SOCIAL_NETWORKS_RSS_URL': ('http://minipc.com:8000/feed/', _('Social Networks - Gitlab'), str),
 }
 
 CONSTANCE_CONFIG_FIELDSETS = {

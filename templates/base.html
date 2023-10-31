@@ -57,24 +57,46 @@
                     <div class="col-md-4 top-social text-lg-right text-md-center">
                         <ul class="unstyled">
                             <li>
-                                <a title="Facebook" href="#">
-                                    <span class="social-icon"><i class="fa fa-facebook"></i></span>
-                                </a>
-                                <a title="Twitter" href="#">
+                                {% if config.SOCIAL_NETWORKS_TWITTER_URL != '#' %}
+                                <a title="twitter" href="{{config.SOCIAL_NETWORKS_TWITTER_URL}}">
                                     <span class="social-icon"><i class="fa fa-twitter"></i></span>
                                 </a>
-                                <a title="Google+" href="#">
-                                    <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_FACEBOOK_URL != '#' %}
+                                <a title="facebook" href="{{config.SOCIAL_NETWORKS_FACEBOOK_URL}}">
+                                    <span class="social-icon"><i class="fa fa-facebook"></i></span>
                                 </a>
-                                <a title="Linkdin" href="#">
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_LINKEDIN_URL != '#' %}
+                                <a title="linkedin" href="{{config.SOCIAL_NETWORKS_LINKEDIN_URL}}">
                                     <span class="social-icon"><i class="fa fa-linkedin"></i></span>
                                 </a>
-                                <a title="Rss" href="#">
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_INSTAGRAM_URL != '#' %}
+                                <a title="instagram" href="{{config.SOCIAL_NETWORKS_INSTAGRAM_URL}}">
+                                    <span class="social-icon"><i class="fa fa-instagram"></i></span>
+                                </a>
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_MEDIUM_URL != '#' %}
+                                <a title="medium" href="{{config.SOCIAL_NETWORKS_MEDIUM_URL}}">
+                                    <span class="social-icon"><i class="fa fa-medium"></i></span>
+                                </a>
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_TELEGRAM_URL != '#' %}
+                                <a title="telegram" href="{{config.SOCIAL_NETWORKS_TELEGRAM_URL}}">
+                                    <span class="social-icon"><i class="fa fa-telegram"></i></span>
+                                </a>
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_GITHUB_URL != '#' %}
+                                <a title="github" href="{{config.SOCIAL_NETWORKS_GITHUB_URL}}">
+                                    <span class="social-icon"><i class="fa fa-github"></i></span>
+                                </a>
+                                {% endif %}
+                                {% if config.SOCIAL_NETWORKS_RSS_URL != '#' %}
+                                <a title="rss" href="{{config.SOCIAL_NETWORKS_RSS_URL}}">
                                     <span class="social-icon"><i class="fa fa-rss"></i></span>
                                 </a>
-                                <a title="Skype" href="#">
-                                    <span class="social-icon"><i class="fa fa-skype"></i></span>
-                                </a>
+                                {% endif %}
                             </li>
                         </ul>
                     </div>

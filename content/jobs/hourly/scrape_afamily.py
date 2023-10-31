@@ -14,8 +14,24 @@ import requests
 
 from PyEditorial.settings import SCRAPE_LIST
 
+
 class Job(HourlyJob):
     help = "Scrape from afamily.vn category Nau An https://afamily.vn/an-ngon.chn"
+
+    def baomoi_soupcleaner(self, soup):
+        h1_title = soup.find('h1')
+        title = h1_title.text
+        main_container = h1_title.parent
+        #Delete the source link
+        _source_link = main_container.find(lambda tag:tag.name=="a" and "Gốc" in str(tag))
+        _source_container = _source_link.parent
+        _source_container.decompose()
+        # Delete default players
+        _default_players = main_container.find_all(lambda tag:tag.name=="div" and "player-default" in str(tag))
+        for p in _default_players:
+            p.decompose()
+
+        return
 
     def parse_post(self, url, category_name, *args, **kwargs):
         print(f"   Scraping {url}")
