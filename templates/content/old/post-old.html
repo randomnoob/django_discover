@@ -1,0 +1,119 @@
+{% extends 'content/sidebar-layout.html' %}
+
+{% block head_tag %}
+<title>{{ object.title }}</title>
+<meta name="description" content="{{ object.content|truncatechars:300 }}">
+<link rel='canonical' href="{{config.SITE_HOMEPAGE}}{% url 'content:blog_single' object.slug %}" />
+<link rel='amphtml' href="{{config.SITE_HOMEPAGE}}{% url 'content:blog_single_amp' object.slug %}" />
+
+
+{% include 'content/head-oginfo.html'%}
+{% endblock %}
+
+
+
+{% block content_body %}
+
+<!-- Content Body -->
+                <div class="single-post">
+                    <div class="utf_post_title-area">
+                        <h1 class="utf_post_title">{{ object.title }}</h1>
+                        <div class="utf_post_meta">
+                            <span class="utf_post_author">By
+                                <a href="{% url 'content:user_single' object.author.pk %}">
+                                    {{object.author}}
+                                </a>
+                            </span>
+                            <span class="utf_post_date">
+                                <i class="fa fa-clock-o"></i>
+                                {{ object.created_on|date:"d/m/y" }}
+                            </span>
+                            <span class="post-comment">
+                                <i class="fa fa-comments-o"></i>
+                                <a href="#" class="comments-link"><span>0</span></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="utf_post_content-area">
+                        <div class="entry-content">
+                            {% block inner_content %}
+                            {{ object.internal_seoified | safe }}
+                            {% endblock inner_content %}
+                        </div>
+                    </div>
+                </div>
+                <div class="gap-30"></div>
+                <div class="color-blue">
+                    <h3 class="utf_block_title pb-0 mb-0">
+                        <span>Tác giả</span>
+                    </h3>
+                </div>
+                <div class="mb-4 pb-1" style="background-color: #efefef;">
+                    <div class="bg-gray-200 py-3 py-md-5 px-3 px-md-6">
+                        <div class="d-md-flex">
+                            <a class="d-block text-center text-md-left mb-3 mb-md-0" href=""
+                                style="width: 120px; height: 120px;object-fit: cover">
+                                <img class="rounded-circle" style="width: 120px; height: 120px;object-fit: cover"
+                                    src="https://demo2.madrasthemes.com/bookworm-html/redesigned-octo-fiesta/assets/img/120x120/img1.jpg"
+                                    alt="Image-Description">
+                            </a>
+                            <div class="ml-md-4 text-center text-md-left">
+                                <a class="font-weight-bold font-size-2" href="">{{object.author}}</a>
+                                <p class="font-size-2 mb-0"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gap-30"></div>
+
+                <div class="gap-30"></div>
+                <div class="comments-form">
+                    <h3 class="title-normal">Bình luận</h3>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" name="name" id="name" placeholder="Name" type="text"
+                                        required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" name="email" id="email" placeholder="Email" type="email"
+                                        required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Phone" type="text" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Subject" type="text" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control required-field" id="message" placeholder="Comment"
+                                        rows="10" required=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button class="comments-btn btn btn-primary" type="submit">Post Comment</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="gap-30"></div>
+
+<!-- /Content Body -->
+
+<script type="application/ld+json">
+    {% include 'schema/newsarticle.markup' %}
+</script>
+
+<script type="application/ld+json">
+    {% include 'schema/breadcrumb.markup' %}
+</script>
+{% endblock content_body %}

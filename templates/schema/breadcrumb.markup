@@ -1,0 +1,35 @@
+{
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "{{config.SITE_TITLE}}",
+            "item": "{{config.SITE_HOMEPAGE}}"
+        },
+        {% if object.created_on %}
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{object.category.title}}",
+            "item": "{{config.SITE_HOMEPAGE}}{% url 'content:category_single' object.category.slug %}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{object.title}}",
+            "item": "{{config.SITE_HOMEPAGE}}{% url 'content:blog_single' object.slug %}"
+        }
+
+        {% elif object.title %}
+
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{object.title}}",
+            "item": "{{config.SITE_HOMEPAGE}}{% url 'content:category_single' object.slug %}"
+        }
+        {% endif %}
+    ]
+}

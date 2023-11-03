@@ -1,5 +1,6 @@
 from . import models
 from constance import config
+from content.urls import flatpages
 
 latest_posts = models.Post.objects.order_by('-pk').filter(status=0)[:20]
 

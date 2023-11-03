@@ -1,0 +1,223 @@
+{% extends 'base2.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<!-- Start Featured Post  -->
+<section class="utf_featured_post_area pt-4 no-padding">
+    <div class="container">
+        <div class="row">
+            {% with blog_post=featured_posts.0 %}
+            <div class="col-lg-7 col-md-12 pad-r">
+                <div class="utf_post_overaly_style content-bottom" style="height: 100%; max-height:365px">
+                    <div class="utf_post_thumb">
+                        <a href="{% url 'content:blog_single' blog_post.slug %}">
+                            <img class="img-fluid img-cover" style="max-height: 365px;"
+                                data-original="{{ blog_post.thumbnail }}" alt="{{ blog_post.title }}"
+                                src="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}">
+                        </a>
+                    </div>
+                    <div class="utf_post_content">
+                        <h3 class="utf_post_title title-large">
+                            <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            {% endwith %}
+
+            <div class="col-lg-5 col-md-12 pad-l">
+                <div class="row">
+                    {% with blogs=featured_posts|slice:"1:5" %}
+                    {% for blog_post in blogs %}
+
+                    <div class="col-md-6 pad-{% cycle 'r' 'l' %}-small">
+                        <div class="utf_post_overaly_style contentTop utf_hot_post_bottom clearfix">
+                            <div class="utf_post_thumb">
+                                <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                    <img class="img-fluid img-cover" data-original="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}"
+                                        alt="{{ blog_post.title }}" src="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}" style="">
+                                </a>
+                            </div>
+                            <div class="utf_post_content">
+                                <h3 class="utf_post_title title-medium">
+                                    <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Featured Post  -->
+
+
+
+
+<!-- Start Blog  -->
+<section class="utf_block_wrapper p-bottom-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    {% with category=blog_categories.1 %}
+                    <div class="col-lg-12">
+                        <div class="utf_featured_tab color-blue">
+                            <h2 class="utf_block_title">
+                                <span>
+                                    <a href="{% url 'content:category_single' category.slug %}" style="color: #fff;">{{category.title}}</a>
+                                    &nbsp;
+                                    <a title="rss" style="color: #fff;" href="{% url 'content:feed_by_category' category.slug %}">
+                                        <span class="social-icon"><i class="fa fa-rss"></i></span>
+                                    </a>
+                                </span>
+                            </h2>
+
+                            <!-- start featured blog -->
+                            {% with blog_posts=category.blog_posts.all|slice:":5" %}
+                            <div class="row">
+                                {% if blog_posts %}
+                                {% with blog_post=blog_posts.0 %}
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="utf_post_block_style clearfix">
+                                        <div class="utf_post_thumb">
+                                            <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                <img class="img-fluid img-cover"
+                                                    data-original="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}"
+                                                    alt="{{ blog_post.title }}">
+                                            </a>
+                                        </div>
+                                        <div class="utf_post_content">
+                                            <h3 class="utf_post_title">
+                                                <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                            </h3>
+                                            <div class="utf_post_meta">
+                                                <span class="utf_post_date">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{ blog_post.created_on }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endwith %}
+                            
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="utf_list_post_block">
+                                        <ul class="utf_list_post">
+                                            {% with blog_post_small=blog_posts|slice:"1:5" %}
+                                            {% for blog_post in blog_post_small %}
+                                            <li class="clearfix">
+                                                <div class="utf_post_block_style post-float clearfix">
+                                                    <div class="utf_post_thumb">
+                                                        <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                            <img class="img-fluid img-cover"
+                                                                data-original="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}"
+                                                                alt="{{ blog_post.title }}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="utf_post_content">
+                                                        <h3 class="utf_post_title title-small">
+                                                            <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                                        </h3>
+                                                        <div class="utf_post_meta">
+                                                            <span class="utf_post_date">
+                                                                <i class="fa fa-clock-o"></i>
+                                                                {{ blog_post.created_on|date:"d/m/y" }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                            {% endwith %}
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                {% endif %} 
+                                
+                            {% endwith %} 
+                            <!-- ends featured blog -->
+                            
+                            </div>
+                        </div>
+                        <div class="gap-30"></div>
+                    </div>
+                    {% endwith %}
+
+
+                    {% for category in blog_categories %}
+                    {% with blogs=category.blog_posts.all|slice:":5" %}
+                    {% if blogs %}
+                    <div class="col-lg-6">
+                        <div class="block {% cycle 'color-dark-blue' 'color-violet' 'color-red' 'color-blue' 'color-orange'  'color-aqua'%}">
+                            <h2 class="utf_block_title">
+                                <span>
+                                    <a href="{% url 'content:category_single' category.slug %}" style="color: #fff;">{{category.title}}</a>
+                                    &nbsp;
+                                    <a title="rss" style="color: #fff;" href="{% url 'content:feed_by_category' category.slug %}">
+                                        <span class="social-icon"><i class="fa fa-rss"></i></span>
+                                    </a>
+                                </span>
+                            </h2>
+                            <div class="utf_list_post_block">
+                                <ul class="utf_list_post">
+                                    {% for blog_post in blogs %}
+                                    <li class="clearfix">
+                                        <div class="utf_post_block_style post-float clearfix">
+                                            <div class="utf_post_thumb">
+                                                <a href="{% url 'content:blog_single' blog_post.slug %}">
+                                                    <img class="img-fluid img-cover"
+                                                        data-original="{{ blog_post.thumbnail }}"
+                                                        alt="{{ blog_post.title }}"
+                                                        style="">
+                                                </a>
+                                            </div>
+                                            <div class="utf_post_content">
+                                                <h3 class="utf_post_title title-small">
+                                                    <a
+                                                        href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
+                                                </h3>
+                                                <div class="utf_post_meta">
+                                                    <span class="utf_post_date">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        {{ blog_post.created_on|date:"d/m/y" }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="gap-30"></div>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                {% block sidebar %}
+                {% include "content/sidebar.html" %}
+                {% endblock sidebar %}
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+<!-- End Blog  -->
+
+
+{% endblock %}

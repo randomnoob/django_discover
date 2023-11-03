@@ -18,8 +18,10 @@ BAOMOI = {
     'Chuyện gia đình': "https://baomoi.com/nang-luong-tich-cuc-top338.epi",
     'Ngắm': "https://baomoi.com/kham-pha-the-gioi-top363.epi",
     'Ngắm': "https://baomoi.com/khong-gian-kien-truc.epi",
+    'Ngắm': "https://baomoi.com/nha-thanh-t35935608.epi",
     'Chuyện yêu': "https://baomoi.com/tinh-yeu-hon-nhan.epi",
     'Vào bếp': "https://baomoi.com/am-thuc.epi",
+    'Vào bếp': "https://baomoi.com/van-hoa.epi",
 }
 
 class Job(HourlyJob):
@@ -28,7 +30,6 @@ class Job(HourlyJob):
     @staticmethod
     def join_bodys(data):
         bodys = data['props']['pageProps']['resp']['data']['content']['bodys']
-        print(bodys)
         content = ""
         for elem in bodys:
             if elem['type']=='text':
@@ -51,6 +52,8 @@ class Job(HourlyJob):
 
     """
                 content += player
+
+
         return content
     
     def parse_metadata(self, data):
@@ -96,7 +99,7 @@ class Job(HourlyJob):
             the_post = Post.objects.create(category=category, **parsed)
             the_post.save()
             print(f"      Done Scraping {url}")
-            print(f"      Post title {parsed['content']}")
+            print(f"      Post title {parsed['title']}")
         except IntegrityError:
             print(f"      ++Duplicated URL")
             pass
@@ -113,15 +116,15 @@ class Job(HourlyJob):
         return subpage_urls
 
     def execute(self):
-        # for cate_name, cate_url in BAOMOI.items():
-        #     print(f"====Scraping Category {cate_name}===={cate_url}")
-        #     post_urls = self.parse_pagination(cate_url)
-        #     print(f"    Post URLs list contains {len(post_urls)} URLs")
-        #     for url in post_urls:
-        #             url = "https://baomoi.com"+url
-        #             try:
-        #                 self.parse_post(url, category_name=cate_name)
-        #             except:
-        #                 pass
-        self.parse_post("https://baomoi.com/can-tho-trao-giai-bao-chi-bua-liem-vang-lan-thu-ii-cho-50-tac-pham-c47387551.epi", category_name="Ngắm")
-        return
+        for cate_name, cate_url in BAOMOI.items():
+            print(f"====Scraping Category {cate_name}===={cate_url}")
+            post_urls = self.parse_pagination(cate_url)
+            print(f"    Post URLs list contains {len(post_urls)} URLs")
+            for url in post_urls:
+                    url = "https://baomoi.com"+url
+                    try:
+                        self.parse_post(url, category_name=cate_name)
+                    except:
+                        pass
+        # self.parse_post("https://baomoi.com/can-tho-trao-giai-bao-chi-bua-liem-vang-lan-thu-ii-cho-50-tac-pham-c47387551.epi", category_name="Ngắm")
+        # return

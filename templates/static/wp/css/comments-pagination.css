@@ -1,0 +1,19 @@
+.paginate-com {
+  font-size: 16px;
+  margin: 40px 0;
+}
+.paginate-com a {
+  background-color: #33495d;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px;
+}
+.paginate-com a:hover,
+.paginate-com .current {
+  background-color: #ad1606;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 16px;
+}

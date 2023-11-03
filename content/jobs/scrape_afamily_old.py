@@ -47,13 +47,13 @@ class Job(DailyJob):
         return subpage_urls
 
     def execute(self):
-        pagination = [f"https://afamily.vn/timeline/134/trang-{x}.chn" for x in range(1,4)]
-        subpage_urls = []
-        for x in pagination:
-            urls = self.parse_pagination(x)
-            subpage_urls.extend(urls)
+        # pagination = [f"https://afamily.vn/timeline/134/trang-{x}.chn" for x in range(1,4)]
+        # subpage_urls = []
+        # for x in pagination:
+        #     urls = self.parse_pagination(x)
+        #     subpage_urls.extend(urls)
 
-        for url in subpage_urls:
-                url = "https://afamily.vn"+url
-                self.parse_post(url)
+        # for url in subpage_urls:
+        #         url = "https://afamily.vn"+url
+        #         self.parse_post(url)
         return

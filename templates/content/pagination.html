@@ -1,18 +1,14 @@
-
-<div class="gap-30"></div>
-{% if page_obj.number < 5 %}
-<div class="paging">
-    <ul class="pagination">
+<div class="archive-pagination pagination" role="navigation" aria-label="Pagination">
+    <ul>
         {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}">«</a></li>
+        <li><a href="?page={{ page_obj.previous_page_number }}"><span class="screen-reader-text">Go to previous page</span>Previous Page</a></li>
         {% endif %}
-        <li class="active">
-            <a href="#">{{ page_obj.number }}</a>
-        </li>
+
+        <li class="active"><a href="{{ request.get_full_path }}" aria-label="Current page"
+                aria-current="page"><span class="screen-reader-text">Go to page</span> {{ page_obj.number }}</a></li>
+
         {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}">»</a></li>
+        <li><a href="?page={{ page_obj.next_page_number }}"><span class="screen-reader-text">Go to next page</span>Next Page</a></li>
         {% endif %}
     </ul>
 </div>
-{% endif %}
-<div class="gap-30"></div>

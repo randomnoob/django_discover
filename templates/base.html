@@ -7,16 +7,10 @@
 {% endblock %}
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     {% block foremost_head_tag %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% endblock %}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="author" content="">
-    <!-- <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" /> -->
-    <link rel="icon" href="{{ config.SITE_FAVICON }}" type="image/png" sizes="16x16">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,shrink-to-fit=no">
+    {% endblock %}    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
     {% block head_tag %}
     <title>{{ config.SITE_TITLE }}</title>
@@ -28,257 +22,211 @@
     <link rel="alternate" type="application/rss+xml" title="Dòng thông tin mới nhất trên {{config.SITE_TITLE}}" href="{{config.SITE_HOMEPAGE}}{% url 'content:all_feed' %}">
     <meta name="robots" content="index, follow" />
 
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ config.SITE_TITLE }}">
+    <meta property="og:description" content="{{ config.SITE_DESCRIPTION }}">
+    <meta property="og:url" content="{{ config.SITE_HOMEPAGE }}">
+    <meta property="og:site_name" content="{{ config.SITE_TITLE }}">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,500,600,700,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" id="paradise-style-css" href="{% static '/wp/css/style.css' %}" media="all">
+    <link rel="stylesheet" id="paradise-enews-extended-css" href="{% static '/wp/css/enews-extended.css' %}" media="all">
+    <link rel="stylesheet" id="paradise-back-to-top-css" href="{% static '/wp/css/back-to-top.css' %}" media="all">
+    <link rel="stylesheet" id="paradise-magazine-style-css" href="{% static '/wp/css/magazine-style.css' %}" media="all">
+    <link rel="stylesheet" id="paradise-comments-pagination-css" href="{% static '/wp/css/comments-pagination.css' %}" media="all">
+    <link rel="stylesheet" id="paradise-icomoon-css" href="{% static '/wp/css/icomoon.css' %}" media="all">
 
-    <!-- <meta name="google-site-verification" content="6IkEfnGIhDbsN7tWMcUcjLRVM67uJGJCrLFRfQGm5gA" /> -->
-
-    <link rel="stylesheet" href="{% static '/assets/base_css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static '/assets/base_css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/assets/base_css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static '/assets/base_css/font-awesome.min.css' %}">
-
+    <style type="text/css">
+        .site-title a {
+            background: url({{config.SITE_LOGO}}) no-repeat !important;
+        }
+    </style>
+    <link rel="icon" href="{{config.SITE_LOGO32}}"
+        sizes="32x32">
+    <link rel="icon" href="{{config.SITE_LOGO_192}}"
+        sizes="192x192">
+    <link rel="apple-touch-icon"
+        href="{{config.SITE_LOGO_180}}">
+    <meta name="msapplication-TileImage"
+        content="{{config.SITE_LOGO_270}}">
 </head>
 
-<body class="main-body">
+<body
+    class="home blog wp-custom-logo custom-header header-image content-sidebar genesis-breadcrumbs-hidden genesis-footer-widgets-visible primary-nav paradise-home">
+    <a href="#" class="to-top" title="Back to top"><i class="icon-caret-down" aria-hidden="true"></i></a>
+    <div class="site-container"><button class="menu-toggle genesis-mobile-nav-primary:before" aria-expanded="false"
+            aria-pressed="false" role="button" id="genesis-mobile-nav-primary">MENU</button>
+        <nav class="nav-primary genesis-responsive-menu" aria-label="Main" style="">
+            <div class="wrap">
+                <ul id="menu-menu" class="menu genesis-nav-menu menu-primary js-superfish sf-js-enabled sf-arrows"
+                    style="touch-action: pan-y;">
 
-
-    <div class="body-inner">
-        <!-- Topbar Start -->
-        <div id="top-bar" class="top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <ul class="unstyled top-nav">
-
-                        </ul>
-                    </div>
-                    <div class="col-md-4 top-social text-lg-right text-md-center">
-                        <ul class="unstyled">
-                            <li>
-                                {% if config.SOCIAL_NETWORKS_TWITTER_URL != '#' %}
-                                <a title="twitter" href="{{config.SOCIAL_NETWORKS_TWITTER_URL}}">
-                                    <span class="social-icon"><i class="fa fa-twitter"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_FACEBOOK_URL != '#' %}
-                                <a title="facebook" href="{{config.SOCIAL_NETWORKS_FACEBOOK_URL}}">
-                                    <span class="social-icon"><i class="fa fa-facebook"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_LINKEDIN_URL != '#' %}
-                                <a title="linkedin" href="{{config.SOCIAL_NETWORKS_LINKEDIN_URL}}">
-                                    <span class="social-icon"><i class="fa fa-linkedin"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_INSTAGRAM_URL != '#' %}
-                                <a title="instagram" href="{{config.SOCIAL_NETWORKS_INSTAGRAM_URL}}">
-                                    <span class="social-icon"><i class="fa fa-instagram"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_MEDIUM_URL != '#' %}
-                                <a title="medium" href="{{config.SOCIAL_NETWORKS_MEDIUM_URL}}">
-                                    <span class="social-icon"><i class="fa fa-medium"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_TELEGRAM_URL != '#' %}
-                                <a title="telegram" href="{{config.SOCIAL_NETWORKS_TELEGRAM_URL}}">
-                                    <span class="social-icon"><i class="fa fa-telegram"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_GITHUB_URL != '#' %}
-                                <a title="github" href="{{config.SOCIAL_NETWORKS_GITHUB_URL}}">
-                                    <span class="social-icon"><i class="fa fa-github"></i></span>
-                                </a>
-                                {% endif %}
-                                {% if config.SOCIAL_NETWORKS_RSS_URL != '#' %}
-                                <a title="rss" href="{{config.SOCIAL_NETWORKS_RSS_URL}}">
-                                    <span class="social-icon"><i class="fa fa-rss"></i></span>
-                                </a>
-                                {% endif %}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    <li id="menu-item"
+                        class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item">
+                        <a href="h{{ config.SITE_HOMEPAGE }}" aria-current="page"><span>Trang chủ</span></a></li>
+                    {% for category in blog_categories|slice:":10" %}
+                    <li id="menu-item"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item"><a
+                            href="{% url 'content:category_single' category.slug %}"><span>{{ category.title }}</span></a></li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-        <!-- Topbar End -->
-
-        <!-- Header start -->
-        <header id="header" class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="logo">
-                            <a href="{{ config.SITE_HOMEPAGE }}">
-                                <img src="{% static '/images/hoasenplus.png' %}"
-                                    alt="" height="75">
-                            </a>
+        </nav>
+        <header class="site-header">
+            <div class="wrap">
+                <div class="title-area">
+                    <h1 class="site-title"><a href="{{ config.SITE_HOMEPAGE }}">{{ config.SITE_TITLE }}</a></h1>
+                </div>
+                <div class="widget-area header-widget-area">
+                    <section id="custom_html-3" class="widget_text widget widget_custom_html">
+                        <div class="widget_text widget-wrap">
+                            <div class="textwidget custom-html-widget">
+                            </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </header>
-        <!-- Header End -->
+        <nav class="nav-secondary genesis-responsive-menu" aria-label="Secondary" id="genesis-nav-secondary" style="">
+            <div class="wrap">
+                <ul id="menu-footer-menu"
+                    class="menu genesis-nav-menu menu-secondary js-superfish sf-js-enabled sf-arrows"
+                    style="touch-action: pan-y;">
 
-        <!-- Main Nav Start -->
-        <div class="utf_main_nav_area clearfix utf_sticky">
-            <div class="container">
-                <div class="row">
-                    <nav class="navbar navbar-expand-lg col">
-                        <div class="utf_site_nav_inner float-left">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="true" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div id="navbarSupportedContent"
-                                class="collapse navbar-collapse navbar-responsive-collapse">
-                                <ul class="nav navbar-nav">
-                                    <li class="active">
-                                        <a href="{{ config.SITE_HOMEPAGE }}">Trang chủ</a>
-                                    </li>
-                                    {% for category in blog_categories %}
-                                    <li>
-                                        <a href="{% url 'content:category_single' category.slug %}">{{ category.title }}</a>
-                                    </li>
-                                    {% endfor %}
-
-
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                    <div class="utf_nav_search"> <span id="search"><i class="fa fa-search"></i></span> </div>
-                    <div class="utf_search_block" style="display: none;">
-                        <input type="text" class="form-control" placeholder="Enter your keywords...">
-                        <span class="utf_search_close">&times;</span>
-                    </div>
-                </div>
+                   
+                    <li id="menu-item"
+                        class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item">
+                        <a href="h{{ config.SITE_HOMEPAGE }}" aria-current="page"><span>Trang chủ</span></a></li>
+                    {% for category in blog_categories|slice:":10" %}
+                    <li id="menu-item"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item"><a
+                            href="{% url 'content:category_single' category.slug %}"><span>{{ category.title }}</span></a></li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-        <!-- Main Nav End -->
-        
+        </nav>
+
         {% block content %}
         {% endblock %}
 
-
-
-
-        <!-- Footer Start -->
-        <div id="footer" class="footer">
-            <div class="utf_footer_main">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget contact-widget">
-                            <div class="widget-title">About Us</div>
-                            <ul>
-                                <li>
-                                    <div class="row clearfix content-line">
-                                        <div class="col-xs-9 column content-util">{{config.SITE_DESCRIPTION}}</div>
-                                    </div>
-                                </li>
-                                <li><i class="fa fa-home"></i>{{config.SITE_ADDRESS}}</li>
-                                </li> Website chúng tôi là web site cập nhật nội dung tự động từ google.com. Nội dung
-                                chỉ mang tính chất tham khảo
-                            </ul>
-
-
-
-                        </div>
-
-                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget widget-categories">
-                            <div class="widget-title">Danh mục</div>
-                            <ul>
-                                {% for category in blog_categories %}
-                                <li>
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <a href="{% url 'content:category_single' category.slug %}">
-                                        <span class="catTitle">{{ category.title }}</span>
-                                    </a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-12 col-xs-12 footer-widget">
-                            <div class="widget-title">Trang</div>
-                            <div class="utf_list_post_block">
-                                <ul class="utf_list_post">
-                                    <li class="clearfix">
-                                        <div class="utf_post_block_style post-float clearfix">
-                                            <div class="utf_post_content">
-                                                <h2 class="utf_post_title title-small">
-                                                    <a href="{{ config.SITE_HOMEPAGE }}/chuyen-doi-muc-dich-su-dung">Chuyển
-                                                        đổi mục đích sử dụng</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <div class="utf_post_block_style post-float clearfix">
-                                            <div class="utf_post_content">
-                                                <h2 class="utf_post_title title-small">
-                                                    <a href="{{ config.SITE_HOMEPAGE }}/noi-quy">Nội Quy</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+        <div class="footer-widgets">
+            <h2 class="genesis-sidebar-title screen-reader-text">Footer</h2>
+            <div class="wrap">
+                <div class="widget-area footer-widgets-1 footer-widget-area">
+                    <section id="text-5" class="widget widget_text">
+                        <div class="widget-wrap">
+                            <h3 class="widgettitle widget-title">Về Chúng Tôi</h3>
+                            <div class="textwidget">
+                                <div class="description">
+                                    <p>Trang thông tin tự động cập nhật Google chuyên cung cấp kiến thức về tất cả lĩnh
+                                        vực</p>
+                                    <p>Website chúng tôi là web site cập nhật nội dung tự động từ google.com. Nếu có vấn
+                                        đề gì về bản quyền vui lòng liên hệ contact@{{config.SITE_ADDRESS}}</p>
+                                    <ul>
+                                        <li><a href="{% url 'content:chuyen-doi-muc-dich-su-dung' %}">Chuyển đổi mục đích sử dụng</a></li>
+                                        <li><a href="{% url 'content:noi-quy' %}">Nội quy</a></li>
+                                        <li><a href="{% url 'content:terms' %}">Điều khoản dịch vụ</a></li>
+                                        <li><a href="{% url 'content:about' %}">Về chúng tôi</a></li>
+                                        <li><a href="{% url 'content:contact' %}">Liên hệ</a></li>
+                                        <li><a href="{% url 'content:privacy' %}">Quyền riêng tư</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+                    </section>
+                </div>
+                <div class="widget-area footer-widgets-2 footer-widget-area">
+                    <section id="text-6" class="widget widget_text">
+                        <div class="widget-wrap">
+                            <h3 class="widgettitle widget-title">Địa Chỉ</h3>
+                            <div class="textwidget">
+                                <p>{{config.SITE_NAME}}<br>
+                                    Địa chỉ: {{config.SITE_ADDRESS}}<br>
+                                    Điện thoại: </p>
+                                <p><strong>Theo dõi chúng tôi trên mạng xã hội</strong></p>
+                                <p>
+                                        {% if config.SOCIAL_NETWORKS_FACEBOOK_URL != '#' %}
+                                        <a title="facebook" href="{{config.SOCIAL_NETWORKS_FACEBOOK_URL}}" target="_blank" rel="noopener">
+                                            <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                                            <img
+                                            decoding="async" class="alignnone wp-image-34079"
+                                            src="{% static '/images/fb_icon.png' %}"
+                                            alt="" width="40" height="40"></a>
+                                            
+                                        {% endif %}
+                                        {% if config.SOCIAL_NETWORKS_TWITTER_URL != '#' %}
+                                        <a title="twitter" href="{{config.SOCIAL_NETWORKS_TWITTER_URL}}" target="_blank" rel="noopener">
+                                            <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                                            <img
+                                            decoding="async" class="alignnone wp-image-34079"
+                                            src="{% static '/images/twitter_icon.png' %}"
+                                            alt="" width="40" height="40"></a>
+                                            
+                                        {% endif %}
+                                        {% if config.SOCIAL_NETWORKS_LINKEDIN_URL != '#' %}
+                                        <a title="linkedin" href="{{config.SOCIAL_NETWORKS_LINKEDIN_URL}}" target="_blank" rel="noopener">
+                                            <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                                            <img
+                                            decoding="async" class="alignnone wp-image-34079"
+                                            src="{% static '/images/linkedin_icon.png' %}"
+                                            alt="" width="40" height="40"></a>
+                                            
+                                        {% endif %}
+                                        {% if config.SOCIAL_NETWORKS_YOUTUBE_URL != '#' %}
+                                        <a title="youtube" href="{{config.SOCIAL_NETWORKS_YOUTUBE_URL}}" target="_blank" rel="noopener">
+                                            <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                                            <img
+                                            decoding="async" class="alignnone wp-image-34079"
+                                            src="{% static '/images/youtube_icon.png' %}"
+                                            alt="" width="40" height="40"></a>
+                                            
+                                        {% endif %}
+                                </p>
+                                    {% if config.SOCIAL_NETWORKS_GOOGLENEWS_URL != '#' %}
+                                    <p><a href="{{config.SOCIAL_NETWORKS_GOOGLENEWS_URL}}"><img
+                                        decoding="async" class="alignnone size-full wp-image-24187"
+                                        src="{% static '/images/google_news_icon.png' %}"
+                                        alt="" width="468" height="128"></a></p>
+                                    {% endif %}
 
-                    </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="widget-area footer-widgets-3 footer-widget-area">
+                    <section id="custom_html-2" class="widget_text widget widget_custom_html">
+                        <div class="widget_text widget-wrap">
+                            <h3 class="widgettitle widget-title">Map</h3>
+                            <div class="textwidget custom-html-widget"><iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31354.41438451787!2d106.65816540009845!3d10.788181476643361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f218ed30895%3A0xd7ff822aa9ef6e94!2sHoa%20Sen%20University!5e0!3m2!1sen!2s!4v1699002042169!5m2!1sen!2s"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
-
-        <!-- Copyright Start -->
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 text-center">
-                        <div class="utf_copyright_info"> <span>Copyright © 2023 All Rights Reserved.</span> </div>
-                    </div>
-                </div>
-                <div id="back-to-top" class="back-to-top">
-                    <button class="btn btn-primary" title="Back to Top"> <i class="fa fa-angle-up"></i> </button>
-                </div>
+        <footer class="site-footer">
+            <div class="wrap">
+                <p>Bản quyền ©&nbsp; {{config.SITE_TITLE}} 2023</p>
             </div>
-        </div>
-        <!-- Copyright End -->
-
-
-        <script type="application/ld+json">
-            {% include 'schema/website.markup' %}
-        </script>
-        <script type="application/ld+json">
-            {% include 'schema/organization.markup' %}
-        </script>
-
-
+        </footer>
     </div>
-    
-    <!-- Javascript Files -->
-    <script src="{% static '/assets/base_js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static '/assets/base_js/popper.min.js' %}"></script>
-    <script src="{% static '/assets/base_js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/assets/base_js/smoothscroll.js' %}"></script>
-    <script src="{% static '/assets/base_js/custom_script.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js" integrity="sha512-jNDtFf7qgU0eH/+Z42FG4fw3w7DM/9zbgNPe3wfJlCylVDTT3IgKW5r92Vy9IHa6U50vyMz5gRByIu4YIXFtaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static '/wp/js/jquery.min.js' %}"></script>
+    <script src="{% static '/wp/js/jquery-migrate.min.js' %}"></script>
+    <script src="{% static '/wp/js/hoverIntent.min.js' %}"></script>
+    <script src="{% static '/wp/js/superfish.min.js' %}"></script>
+    <script src="{% static '/wp/js/superfish.args.min.js' %}"></script>
+    <script src="{% static '/wp/js/back-to-top.js' %}"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            $("img.img-fluid").lazyload({
-                effect: "fadeIn"
-            });
-            $("img.img-fluid-cover").lazyload({
-                effect: "fadeIn"
-            });
-        });
+
+    <script id="paradise-responsive-menu-js-extra">
+        var genesis_responsive_menu = { "mainMenu": "MENU", "subMenu": "MENU", "menuClasses": { "combine": [".nav-primary", ".nav-header", ".nav-secondary"] } };
     </script>
+    <script src="{% static '/wp/js/responsive-menus.min.js' %}"></script>
+
+
 </body>
 
 </html>

@@ -20,9 +20,9 @@
     },
     "description": "{% if config.SITE_DESCRIPTION %}{{ config.SITE_DESCRIPTION }}{% endif %}",
     "sameAs": [
-        "{% if config.FACEBOOK %}{{ config.FACEBOOK }}{%else%}https://www.facebook.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
-        "{% if config.TWITTER %}{{ config.TWITTER }}{%else%}https://www.twitter.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
-        "{% if config.PINTEREST %}{{ config.PINTEREST }}{%else%}https://www.pinterest.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
-        "{% if config.YOUTUBE %}{{ config.YOUTUBE }}{%else%}https://www.youtube.com/@{{config.SITE_SOCIAL_USERNAME}}{% endif %}"
+        "{% if config.SOCIAL_NETWORKS_FACEBOOK_URL %}{{ config.SOCIAL_NETWORKS_FACEBOOK_URL }}{%else%}https://www.facebook.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
+        "{% if config.SOCIAL_NETWORKS_TWITTER_URL %}{{ config.SOCIAL_NETWORKS_TWITTER_URL }}{%else%}https://www.twitter.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
+        "{% if config.SOCIAL_NETWORKS_INSTAGRAM_URL %}{{ config.SOCIAL_NETWORKS_INSTAGRAM_URL }}{%else%}https://www.pinterest.com/{{config.SITE_SOCIAL_USERNAME}}{% endif %}",
+        "{% if config.SOCIAL_NETWORKS_RSS_URL %}{{ config.SOCIAL_NETWORKS_RSS_URL }}{%else%}https://www.youtube.com/@{{config.SITE_SOCIAL_USERNAME}}{% endif %}"
     ]
 }

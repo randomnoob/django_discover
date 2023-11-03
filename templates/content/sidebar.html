@@ -1,65 +1,73 @@
 {% load static %}
-    <div class="sidebar utf_sidebar_right">
-        <div class="widget color-violet">
-            <div class="utf_block_title"><span>Phổ biến</span></div>
-            <div class="utf_list_post_block">
-                <ul class="utf_list_post">
+
+<aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar">
+
+<section id="block-2" class="widget widget_block widget_search">
+    <div class="widget-wrap">
+        <form role="search" method="get" action="{{ config.SITE_HOMEPAGE }}"
+            class="wp-block-search__button-outside wp-block-search__text-button wp-block-search">
+            <label class="wp-block-search__label" for="wp-block-search__input-1">Tìm kiếm</label>
+            <div class="wp-block-search__inside-wrapper "><input class="wp-block-search__input"
+                    id="wp-block-search__input-1" placeholder="" value="" type="search" name="s" required=""><button
+                    aria-label="Tìm kiếm" class="wp-block-search__button wp-element-button" type="submit">Tìm
+                    kiếm</button></div>
+        </form>
+    </div>
+</section>
+<section id="block-3" class="widget widget_block">
+    <div class="widget-wrap">
+        <div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
+            <div class="wp-block-group__inner-container">
+                <h2 class="wp-block-heading">Phổ biến</h2>
+                <ul class="wp-block-latest-posts__list wp-block-latest-posts">
                     {% for blog_post in popular_posts %}
-                    <li class="clearfix">
-                        <div class="utf_post_block_style post-float clearfix">
-                            <div class="utf_post_thumb">
-                                <a href="{% url 'content:blog_single' blog_post.slug %}">
-                                    <img class="img-fluid img-cover"
-                                        src="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}"
-                                        alt="{{ blog_post.title }}">
-                                </a>
-                            </div>
-                            <div class="utf_post_content">
-                                <h3 class="utf_post_title title-small">
-                                    <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
-                                </h3>
-                                <div class="utf_post_meta">
-                                    <span class="utf_post_date">
-                                        <i class="fa fa-clock-o"></i>
-                                        {{ blog_post.created_on|date:"d/m/y" }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <li><a class="wp-block-latest-posts__post-title"
+                            href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
-        <div class="widget color-blue">
-            <div class="utf_block_title"><span>Xem nhiều</span></div>
-            <div class="utf_list_post_block">
-                <ul class="utf_list_post">
-                    {% for blog_post in most_viewed %}
-                    <li class="clearfix">
-                        <div class="utf_post_block_style post-float clearfix">
-                            <div class="utf_post_thumb">
-                                <a href="{% url 'content:blog_single' blog_post.slug %}">
-                                    <img class="img-fluid img-cover"
-                                        src="{%if blog_post.thumbnail%}{{ blog_post.thumbnail }}{%else%}{% static '/assets/images/na.png' %}{%endif%}"
-                                        alt="{{ blog_post.title }}">
-                                </a>
-                            </div>
-                            <div class="utf_post_content">
-                                <h3 class="utf_post_title title-small">
-                                    <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
-                                </h3>
-                                <div class="utf_post_meta">
-                                    <span class="utf_post_date">
-                                        <i class="fa fa-clock-o"></i>
-                                        {{ blog_post.created_on|date:"d/m/y" }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+    </div>
+</section>
+
+
+<div class="widget-wrap">
+    <h2 class="widgettitle widget-title">Bài viết nổi bật</h2>
+    {% for blog_post in most_viewed %}
+    <article class="post type-post format-standard has-post-thumbnail entry"
+        aria-label="{{ blog_post.title }}">
+        <a href="{% url 'content:blog_single' blog_post.slug %}"
+            class="alignleft" aria-hidden="true" tabindex="-1"><img width="100" height="100"
+                src="{%if blog_post.thumbnail%}{{blog_post.thumbnail}}{%else%}{% static '/assets/images/na.png' %}{%endif%}"
+                class="entry-image attachment-post" alt="{{ blog_post.title }}" decoding="async"
+                itemprop="image"></a>
+        <header class="entry-header">
+            <h4 class="entry-title" itemprop="headline" style="font-size: 16px;"><a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a></h4>
+
+        </header>
+    </article>
+    {% endfor %}
+
+
+</div>
+
+
+<section id="block-6" class="widget widget_block">
+    <div class="widget-wrap">
+        <div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
+            <div class="wp-block-group__inner-container">
+                <h2 class="wp-block-heading">Chủ Đề</h2>
+                <ul class="wp-block-categories-list wp-block-categories">
+                    {% for category in blog_categories %}
+                    <li class="cat-item cat-item-10"><a
+                            href="{% url 'content:category_single' category.slug %}">{{category.title}}</a>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
     </div>
+</section>
+
+
+</aside>

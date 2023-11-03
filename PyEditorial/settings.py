@@ -194,7 +194,11 @@ CONSTANCE_CONFIG = {
     'SITE_CITY': ('Thành phố Hồ Chí Minh', _('Address of this site!'), str),
     'SITE_DESCRIPTION': ('Blog Description', _('Description of this site!'), str),
     'SITE_FAVICON': ('static/images/hoasenplus.png', _('Favicon of this site!'), 'image_field'),
-    'SITE_LOGO': ('http://minipc.com:8000/logo.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO': ('http://minipc.com:8000/static/images/hoasenplus2.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO32': ('http://minipc.com:8000/logo.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO180': ('http://minipc.com:8000/logo.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO192': ('http://minipc.com:8000/logo.png', _('Favicon of this site!'), 'image_field'),
+    'SITE_LOGO270': ('http://minipc.com:8000/logo.png', _('Favicon of this site!'), 'image_field'),
     'SITE_FEED_URL': ('feed', _('Feed URL of the site!'), str),
     'SITE_SOCIAL_USERNAME': ('hoasenplus', _('Social usernames of the site!'), str),
 
@@ -206,6 +210,8 @@ CONSTANCE_CONFIG = {
 
     'SOCIAL_NETWORKS_FACEBOOK_URL': ('#', _('Social Networks - Facebook'), str),
     'SOCIAL_NETWORKS_TWITTER_URL': ('#', _('Social Networks - Twitter'), str),
+    'SOCIAL_NETWORKS_LINKEDIN_URL': ('#', _('Social Networks - Twitter'), str),
+    'SOCIAL_NETWORKS_YOUTUBE_URL': ('#', _('Social Networks - Twitter'), str),
     'SOCIAL_NETWORKS_SNAPCHAT_URL': ('#', _('Social Networks - Snapchat'), str),
     'SOCIAL_NETWORKS_INSTAGRAM_URL': ('#', _('Social Networks - Instagram'), str),
     'SOCIAL_NETWORKS_MEDIUM_URL': ('#', _('Social Networks - Medium'), str),

@@ -17,7 +17,8 @@
     "dateModified": "2023-10-08T14:14:43+07:00",
     "author": {
         "@type": "Person",
-        "name": "{{object.author.username}}"
+        "name": "{{object.author.username}}",
+        "url": "{{config.SITE_HOMEPAGE}}{% url 'content:user_single' object.author.pk %}"
     },
     "publisher": {
         "@type": "Organization",

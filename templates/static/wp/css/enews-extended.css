@@ -1,0 +1,27 @@
+.enews-widget input {
+  margin-bottom: 16px;
+}
+.enews-widget input[type="submit"] {
+  margin: 0;
+  width: 100%;
+}
+.enews form + p {
+  margin-top: 24px;
+}
+.widget-area .enews-widget {
+  background-color: #33495d;
+  color: #fff;
+  padding: 40px;
+}
+.widget-area .enews-widget input:focus {
+  border: 2px solid #fff;
+}
+.widget-area .enews-widget input[type="submit"] {
+  background-color: #ad1606;
+  color: #fff;
+}
+.widget-area .enews-widget input:focus[type="submit"],
+.widget-area .enews-widget input:hover[type="submit"] {
+  background-color: #fff;
+  color: #222;
+}

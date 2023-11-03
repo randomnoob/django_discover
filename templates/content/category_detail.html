@@ -11,18 +11,22 @@
 
 
 {% block breadcrumb %}
-<div class="col-md-12">
-    <ul class="breadcrumb">
-        <li><a href="{{config.SITE_HOMEPAGE}}">Trang chủ</a></li>
-        <li>
-            <a href="{% url 'content:category_single' object.slug %}">{{object.title}}</a>
-        </li>
-        &nbsp;
-        <a title="rss" href="{% url 'content:feed_by_category' object.slug %}">
-            <span class="social-icon"><i class="fa fa-rss"></i></span>
-        </a>
-    </ul>
-</div>
+<div class="breadcrumb" itemscope="" itemtype="https://schema.org/BreadcrumbList">You are here: <span
+    class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope=""
+    itemtype="https://schema.org/ListItem"><a class="breadcrumb-link"
+        href="{{config.SITE_HOMEPAGE}}" itemprop="item"><span class="breadcrumb-link-text-wrap"
+            itemprop="name">Home</span></a>
+    <meta itemprop="position" content="1">
+</span> <span aria-label="breadcrumb separator">/</span> <span class="breadcrumb-link-wrap"
+    itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a
+        class="breadcrumb-link" href="{% url 'content:category_single' object.slug %}" itemprop="item"><span
+            class="breadcrumb-link-text-wrap" itemprop="name">{{object.title}}</span></a>
+    <meta itemprop="position" content="2">
+</span>
+
+<script type="application/ld+json">
+    {% include 'schema/breadcrumb.markup' %}
+</script>
 {% endblock breadcrumb %}
 
 
@@ -43,39 +47,32 @@
     </div>
             
             {% for blog_post in object_list %}
-            <div class="utf_post_block_style post-list clearfix">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="utf_post_thumb thumb-float-style">
-                            <a href="{% url 'content:blog_single' blog_post.slug %}">
-                                <img class="img-fluid img-cover" data-original="{%if blog_post.thumbnail%}
-                                {{ blog_post.thumbnail }}
-                                {%else%}
-                                {% static '/assets/images/na.png' %}
-                                {%endif%}" alt="{{ blog_post.title }}">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-6">
-                        <div class="utf_post_content">
-                            <h3 class="utf_post_title title-large">
-                                <a href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a>
-                            </h3>
-
-                            
-                            <div class="utf_post_meta">
-                                <span class="utf_post_date">
-                                    <i class="fa fa-clock-o"></i>
-                                    {{blog_post.created_on|date:"d/m/y"}}
-                                </span>
-                            </div>
-                            <div class="excerpt">
-                                {{ blog_post.excerpt }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <article class="post type-post format-standard has-post-thumbnail entry"
+            aria-label="{{ blog_post.title }}" itemscope="" itemtype="https://schema.org/CreativeWork">
+            <header class="entry-header">
+                <h2 class="entry-title" itemprop="headline"><a class="entry-title-link" rel="bookmark"
+                        href="{% url 'content:blog_single' blog_post.slug %}">{{ blog_post.title }}</a></h2>
+                <p class="entry-meta"><time class="entry-time" itemprop="datePublished"
+                        datetime="{{blog_post.created_on}}">{{blog_post.created_on|date:"d/m/y"}}</time> <time class="entry-modified-time"
+                        itemprop="dateModified" datetime="{{blog_post.created_on}}">{{blog_post.created_on|date:"d/m/y"}}</time> <span
+                        class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a
+                            href="{% url 'content:user_single' blog_post.author.pk %}" class="entry-author-link" rel="author"
+                            itemprop="url"><span class="entry-author-name" itemprop="name">{{blog_post.author}}</span></a></span>
+                </p>
+            </header>
+            <div class="entry-content" itemprop="text"><a class="entry-image-link"
+                    href="{% url 'content:blog_single' blog_post.slug %}" aria-hidden="true" tabindex="-1"><img width="150"
+                        height="150"
+                        src="{%if blog_post.thumbnail%}
+                        {{ blog_post.thumbnail }}
+                        {%else%}
+                        {% static '/assets/images/na.png' %}
+                        {%endif%}"
+                        class="alignleft post-image entry-image" alt="{{ blog_post.title }}" decoding="async"
+                        itemprop="image" ></a>
+                <p>{{ blog_post.excerpt }} ... <a class="more-link" href="{% url 'content:blog_single' blog_post.slug %}">Xem chi tiết</a></p>
             </div>
+        </article>
             {% endfor%}
 
             {% if page_obj %}

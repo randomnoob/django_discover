@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block content %}
+
+<!-- Content -->
+
+<div class="page-title">
+    <div class="container">
+        <div class="row">
+            {% block breadcrumb %}
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{{config.SITE_HOMEPAGE}}">Trang chủ</a></li>
+                    <li>
+                        <a href="{% url 'content:category_single' object.category.slug %}">{{object.category}}</a>
+                    </li>
+                    <li>{{ object.title }}</li>
+                </ul>
+            </div>
+            {% endblock breadcrumb %}
+        </div>
+    </div>
+</div>
+
+<section class="utf_block_wrapper p-bottom-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                {% block content_body %}
+                {% endblock content_body %}
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                {% block sidebar %}
+                {% include "content/sidebar.html" %}
+                {% endblock sidebar %}
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+
+<!-- /Content -->
+{% endblock %}

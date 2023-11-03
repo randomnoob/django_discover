@@ -14,102 +14,72 @@
 
 {% block content_body %}
 
-<!-- Content Body -->
-                <div class="single-post">
-                    <div class="utf_post_title-area">
-                        <h1 class="utf_post_title">{{ object.title }}</h1>
-                        <div class="utf_post_meta">
-                            <span class="utf_post_author">By
-                                <a href="{% url 'content:user_single' object.author.pk %}">
-                                    {{object.author}}
-                                </a>
-                            </span>
-                            <span class="utf_post_date">
-                                <i class="fa fa-clock-o"></i>
-                                {{ object.created_on|date:"d/m/y" }}
-                            </span>
-                            <span class="post-comment">
-                                <i class="fa fa-comments-o"></i>
-                                <a href="#" class="comments-link"><span>0</span></a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="utf_post_content-area">
-                        <div class="entry-content">
-                            {% block inner_content %}
-                            {{ object.internal_seoified | safe }}
-                            {% endblock inner_content %}
-                        </div>
-                    </div>
-                </div>
-                <div class="gap-30"></div>
-                <div class="color-blue">
-                    <h3 class="utf_block_title pb-0 mb-0">
-                        <span>Tác giả</span>
-                    </h3>
-                </div>
-                <div class="mb-4 pb-1" style="background-color: #efefef;">
-                    <div class="bg-gray-200 py-3 py-md-5 px-3 px-md-6">
-                        <div class="d-md-flex">
-                            <a class="d-block text-center text-md-left mb-3 mb-md-0" href=""
-                                style="width: 120px; height: 120px;object-fit: cover">
-                                <img class="rounded-circle" style="width: 120px; height: 120px;object-fit: cover"
-                                    src="https://demo2.madrasthemes.com/bookworm-html/redesigned-octo-fiesta/assets/img/120x120/img1.jpg"
-                                    alt="Image-Description">
-                            </a>
-                            <div class="ml-md-4 text-center text-md-left">
-                                <a class="font-weight-bold font-size-2" href="">Admin</a>
-                                <p class="font-size-2 mb-0"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="gap-30"></div>
 
-                <div class="gap-30"></div>
-                <div class="comments-form">
-                    <h3 class="title-normal">Bình luận</h3>
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="name" id="name" placeholder="Name" type="text"
-                                        required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="email" id="email" placeholder="Email" type="email"
-                                        required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Phone" type="text" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Subject" type="text" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea class="form-control required-field" id="message" placeholder="Comment"
-                                        rows="10" required=""></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <button class="comments-btn btn btn-primary" type="submit">Post Comment</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="gap-30"></div>
 
-<!-- /Content Body -->
+<!-- BEGIN CONTENT BODY -->
+<article
+class="post-29028 post type-post status-publish format-standard has-post-thumbnail category-am-thuc entry"
+aria-label="{{ object.title }" itemscope=""
+itemtype="https://schema.org/CreativeWork">
+<header class="entry-header">
+    <h1 class="entry-title" itemprop="headline">{{ object.title }}</h1>
+    <p class="entry-meta"><time class="entry-time" itemprop="datePublished"
+            datetime="{{ object.created_on }}">{{ object.created_on|date:"d/m/y" }}</time> <time
+            class="entry-modified-time" itemprop="dateModified"
+            datetime="{{ object.created_on }}">{{ object.created_on|date:"d/m/y" }}</time> <span
+            class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a
+                href="{% url 'content:user_single' object.author.pk %}" class="entry-author-link" rel="author"
+                itemprop="url"><span class="entry-author-name" itemprop="name">{{object.author}}</span></a></span> </p>
+</header>
+<div class="entry-content" itemprop="text">
+    <style>
+        figure {
+            text-align: center;
+            margin: 25px auto;
+        }
+
+        figure img {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+
+{% block inner_content %}
+{{ object.internal_seoified | safe }}
+{% endblock inner_content %}
+
+    <p class="internal-link" style="padding: 20px; background: #eaf0ff;">Nguồn: <a target="_blank"
+            href="{{config.SITE_HOMEPAGE}}">{{config.SITE_HOMEPAGE}}</a><br>Danh mục: <a
+            target="_blank" href="{% url 'content:category_single' object.category.slug %}">{{object.category.title}}</a></p>
+            
+</div>
+
+<footer class="entry-footer">
+    <p class="entry-meta"><span class="entry-categories">Chuyên mục: <a
+                href="{% url 'content:category_single' object.category.slug %}" rel="category tag">{{object.category.title}}</a></span> </p>
+</footer>
+</article>
+<section class="author-box" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><img alt=""
+    src="https://secure.gravatar.com/avatar/81afcd442f05946aa2c31ce68d80f6ab?s=70&amp;d=mm&amp;r=g"
+    class="avatar avatar-70 photo" height="70" width="70" decoding="async">
+<h4 class="author-box-title">About <span itemprop="name">{{object.author}}</span></h4>
+<div class="author-box-content" itemprop="description"></div>
+</section>
+
+<!-- END CONTENT BODY -->
+
+
+
+
+
+
+
 
 <script type="application/ld+json">
     {% include 'schema/newsarticle.markup' %}
+</script>
+
+<script type="application/ld+json">
+    {% include 'schema/breadcrumb.markup' %}
 </script>
 {% endblock content_body %}

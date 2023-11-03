@@ -1,0 +1,34 @@
+.to-top {
+  display: inline-block;
+  position: fixed;
+  bottom: 8px;
+  right: 15px;
+  font-family: "icomoon";
+  font-size: 30px;
+  transform: rotate(180deg);
+  padding: 0 12px 0 12px;
+  color: #33495d;
+  background: transparent;
+  text-align: center;
+  visibility: hidden;
+  z-index: 1000;
+}
+.to-top.top-is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+.to-top.top-fade-out {
+  opacity: 0.5;
+}
+.to-top.top-fade-out:hover,
+.to-top.top-fade-out:focus {
+  opacity: 1;
+}
+.paradise-landing .to-top {
+  color: #fff;
+}
+@media only screen and (max-width: 840px) {
+    .paradise-landing .to-top {
+        color: #33495d !important;
+    }
+}

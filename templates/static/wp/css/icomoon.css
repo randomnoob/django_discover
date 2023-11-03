@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("fonts/icomoon.woff2") format("woff2"),
+    url("fonts/icomoon.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: "icomoon";
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-user:before {
+  content: "\f007";
+}
+.icon-home:before {
+  content: "\f015";
+}
+.icon-clock-o:before {
+  content: "\f017";
+}
+.icon-refresh:before {
+  content: "\f021";
+}
+.icon-tag:before {
+  content: "\f02b";
+}
+.icon-edit:before {
+  content: "\f044";
+}
+.icon-comment:before {
+  content: "\f075";
+}
+.icon-folder-open:before {
+  content: "\f07c";
+}
+.icon-comments:before {
+  content: "\f086";
+}
+.icon-bars:before {
+  content: "\f0c9";
+}
+.icon-caret-down:before {
+  content: "\f0d7";
+}
+.icon-minus-square:before {
+  content: "\f146";
+}
+.icon-shopping-basket:before {
+  content: "\e900";
+}
