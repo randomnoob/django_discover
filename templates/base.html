@@ -16,7 +16,9 @@
     <title>{{ config.SITE_TITLE }}</title>
     <meta name="description" content="{{ config.SITE_DESCRIPTION }}">
     <link rel='canonical' href="{{ config.SITE_HOMEPAGE }}" />
+    {% block amp_url %}
     <link rel='amphtml' href="{{ config.SITE_HOMEPAGE }}/amp" />
+    {% endblock %}
 
     {% endblock %}
     <link rel="alternate" type="application/rss+xml" title="Dòng thông tin mới nhất trên {{config.SITE_TITLE}}" href="{{config.SITE_HOMEPAGE}}{% url 'content:all_feed' %}">
